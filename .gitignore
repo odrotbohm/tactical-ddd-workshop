@@ -1,0 +1,17 @@
+# General
+.DS_Store
+*.orig
+
+# Eclipse / STS
+.classpath
+.project
+.settings/
+.sts4-cache/
+.factorypath
+target/
+
+# IDEA
+.idea/
+*.iml
+*.ipr
+*.iws

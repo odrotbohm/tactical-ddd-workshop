@@ -1,0 +1,197 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.odrotbohm.examples</groupId>
+	<artifactId>tactical-ddd-workshop</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<name>Tactical DDD workshop</name>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.0</version>
+	</parent>
+	
+	<properties>
+		<bytebuddy.version>1.12.1</bytebuddy.version>
+		<java.version>17</java.version>
+		<jmolecules.version>2021.1.0</jmolecules.version>
+		<jmolecules-integrations.version>0.6.0-SNAPSHOT</jmolecules-integrations.version>
+		<moduliths.version>1.2.0</moduliths.version>
+	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jmolecules</groupId>
+				<artifactId>jmolecules-bom</artifactId>
+				<version>${jmolecules.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.jmolecules</groupId>
+			<artifactId>jmolecules-ddd</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jmolecules</groupId>
+			<artifactId>jmolecules-events</artifactId>
+		</dependency>
+
+		<!-- jMolecules integrations -->
+		
+		<dependency>
+			<groupId>org.jmolecules.integrations</groupId>
+			<artifactId>jmolecules-jackson</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jmolecules.integrations</groupId>
+			<artifactId>jmolecules-spring</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+		<!-- Test dependencies -->
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jmolecules.integrations</groupId>
+			<artifactId>jmolecules-archunit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.tngtech.archunit</groupId>
+			<artifactId>archunit-junit5</artifactId>
+			<version>0.21.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.moduliths</groupId>
+			<artifactId>moduliths-test</artifactId>
+			<version>${moduliths.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.moduliths</groupId>
+			<artifactId>moduliths-docs</artifactId>
+			<version>${moduliths.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<defaultGoal>verify</defaultGoal>
+	</build>
+
+	<profiles>
+	
+		<profile>
+
+			<id>in-memory</id>
+
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<dependencies>
+
+				<dependency>
+					<groupId>org.springframework.data</groupId>
+					<artifactId>spring-data-keyvalue</artifactId>
+				</dependency>
+
+			</dependencies>
+		</profile>
+	
+		<profile>
+
+			<id>jpa</id>
+
+			<dependencies>
+			
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-data-jpa</artifactId>
+				</dependency>
+
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+				</dependency>
+
+				<!--
+				<dependency>
+					<groupId>org.jmolecules.integrations</groupId>
+					<artifactId>jmolecules-jpa</artifactId>
+				</dependency>
+
+				<dependency>
+					<groupId>org.jmolecules.integrations</groupId>
+					<artifactId>jmolecules-spring</artifactId>
+				</dependency>
+				 -->
+
+			</dependencies>
+
+			<build>
+				<plugins>
+
+					<!--
+					<plugin>
+						<groupId>net.bytebuddy</groupId>
+						<artifactId>byte-buddy-maven-plugin</artifactId>
+						<version>${bytebuddy.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>transform</goal>
+								</goals>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>org.jmolecules.integrations</groupId>
+								<artifactId>jmolecules-bytebuddy</artifactId>
+								<version>${jmolecules-integrations.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+					-->
+
+				</plugins>
+			</build>
+			
+		</profile>
+	
+	</profiles>
+
+</project>
