@@ -114,27 +114,14 @@
 
 	<profiles>
 	
-		<profile>
-
-			<id>in-memory</id>
-
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-
-			<dependencies>
-
-				<dependency>
-					<groupId>org.springframework.data</groupId>
-					<artifactId>spring-data-keyvalue</artifactId>
-				</dependency>
-
-			</dependencies>
-		</profile>
 	
 		<profile>
 
 			<id>jpa</id>
+			
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 
 			<dependencies>
 			
