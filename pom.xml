@@ -6,15 +6,16 @@
 	<groupId>de.odrotbohm.examples</groupId>
 	<artifactId>tactical-ddd-workshop</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-	<name>Tactical DDD workshop</name>
+	<name>Tactical DDD Workshop</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.6.0</version>
 	</parent>
-	
+
 	<properties>
 		<bytebuddy.version>1.12.1</bytebuddy.version>
 		<java.version>17</java.version>
@@ -22,7 +23,14 @@
 		<jmolecules-integrations.version>0.6.0-SNAPSHOT</jmolecules-integrations.version>
 		<moduliths.version>1.2.0</moduliths.version>
 	</properties>
-	
+
+	<modules>
+		<module>01-verification</module>
+		<module>02-integration</module>
+		<module>03-boilerplate</module>
+		<module>04-moduliths</module>
+	</modules>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -38,71 +46,13 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>org.jmolecules</groupId>
-			<artifactId>jmolecules-ddd</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jmolecules</groupId>
-			<artifactId>jmolecules-events</artifactId>
-		</dependency>
-
-		<!-- jMolecules integrations -->
-		
-		<dependency>
-			<groupId>org.jmolecules.integrations</groupId>
-			<artifactId>jmolecules-jackson</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.jmolecules.integrations</groupId>
-			<artifactId>jmolecules-spring</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		
-		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
 
-		<!-- Test dependencies -->
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.jmolecules.integrations</groupId>
-			<artifactId>jmolecules-archunit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.tngtech.archunit</groupId>
-			<artifactId>archunit-junit5</artifactId>
-			<version>0.21.0</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.moduliths</groupId>
-			<artifactId>moduliths-test</artifactId>
-			<version>${moduliths.version}</version>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.moduliths</groupId>
-			<artifactId>moduliths-docs</artifactId>
-			<version>${moduliths.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -111,74 +61,5 @@
 	<build>
 		<defaultGoal>verify</defaultGoal>
 	</build>
-
-	<profiles>
-	
-	
-		<profile>
-
-			<id>jpa</id>
-			
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-
-			<dependencies>
-			
-				<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-data-jpa</artifactId>
-				</dependency>
-
-				<dependency>
-					<groupId>com.h2database</groupId>
-					<artifactId>h2</artifactId>
-				</dependency>
-
-				<!--
-				<dependency>
-					<groupId>org.jmolecules.integrations</groupId>
-					<artifactId>jmolecules-jpa</artifactId>
-				</dependency>
-
-				<dependency>
-					<groupId>org.jmolecules.integrations</groupId>
-					<artifactId>jmolecules-spring</artifactId>
-				</dependency>
-				 -->
-
-			</dependencies>
-
-			<build>
-				<plugins>
-
-					<!--
-					<plugin>
-						<groupId>net.bytebuddy</groupId>
-						<artifactId>byte-buddy-maven-plugin</artifactId>
-						<version>${bytebuddy.version}</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>transform</goal>
-								</goals>
-							</execution>
-						</executions>
-						<dependencies>
-							<dependency>
-								<groupId>org.jmolecules.integrations</groupId>
-								<artifactId>jmolecules-bytebuddy</artifactId>
-								<version>${jmolecules-integrations.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-					-->
-
-				</plugins>
-			</build>
-			
-		</profile>
-	
-	</profiles>
 
 </project>
