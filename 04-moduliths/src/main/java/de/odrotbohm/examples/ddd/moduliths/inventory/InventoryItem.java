@@ -28,6 +28,7 @@ import java.util.UUID;
 import org.jmolecules.ddd.types.AggregateRoot;
 import org.jmolecules.ddd.types.Association;
 import org.jmolecules.ddd.types.Identifier;
+import org.jmolecules.event.types.DomainEvent;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
 /**
@@ -72,8 +73,8 @@ class InventoryItem extends AbstractAggregateRoot<InventoryItem>
 	}
 
 	@Value
-	@RequiredArgsConstructor(staticName = "of", access = AccessLevel.PRIVATE)
-	public static class OutOfStock {
+	@RequiredArgsConstructor(staticName = "of", access = AccessLevel.PACKAGE)
+	public static class OutOfStock implements DomainEvent {
 		Association<Product, ProductIdentifier> product;
 	}
 }

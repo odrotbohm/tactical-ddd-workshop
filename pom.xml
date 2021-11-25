@@ -19,7 +19,7 @@
 	<properties>
 		<bytebuddy.version>1.12.1</bytebuddy.version>
 		<java.version>17</java.version>
-		<jmolecules.version>2021.1.0</jmolecules.version>
+		<jmolecules.version>2021.2.0-SNAPSHOT</jmolecules.version>
 		<jmolecules-integrations.version>0.6.0-SNAPSHOT</jmolecules-integrations.version>
 		<moduliths.version>1.2.0</moduliths.version>
 	</properties>

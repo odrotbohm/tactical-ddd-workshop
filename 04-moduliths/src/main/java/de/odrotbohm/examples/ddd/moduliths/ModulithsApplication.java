@@ -17,27 +17,16 @@ package de.odrotbohm.examples.ddd.moduliths;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * @author Oliver Drotbohm
  */
+@EnableAsync(proxyTargetClass = false)
 @SpringBootApplication
 public class ModulithsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ModulithsApplication.class, args);
 	}
-
-	// @Bean
-	// CommandLineRunner onStartup(Catalog catalog, Inventory inventory, OrderManagement orders) {
-	//
-	// return args -> {
-	//
-	// Product iPad = catalog.save(new Product("iPad Pro", new BigDecimal(799.99)));
-	// Product iPhone = catalog.save(new Product("iPhone X", new BigDecimal(999.99)));
-	//
-	// inventory.registerShipment(iPad.getId(), 10);
-	// inventory.registerShipment(iPhone.getId(), 15);
-	// };
-	// }
 }

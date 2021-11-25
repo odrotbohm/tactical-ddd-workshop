@@ -35,6 +35,8 @@ import org.jmolecules.ddd.types.Identifier;
 import org.jmolecules.event.types.DomainEvent;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 /**
  * @author Oliver Gierke
  */
@@ -77,13 +79,15 @@ public class Order extends AbstractAggregateRoot<Order> implements AggregateRoot
 		SUBMITTED, COMPLETED;
 	}
 
-	@Value
+	@Value(staticConstructor = "of")
 	public static class OrderIdentifier implements Identifier {
 		UUID id;
 	}
 
 	@Value
-	@RequiredArgsConstructor(staticName = "of", access = AccessLevel.PRIVATE)
+	@RequiredArgsConstructor(staticName = "of",
+			access = AccessLevel.PRIVATE,
+			onConstructor = @__(@JsonCreator))
 	public static class OrderCompleted implements DomainEvent {
 		Order order;
 	}
