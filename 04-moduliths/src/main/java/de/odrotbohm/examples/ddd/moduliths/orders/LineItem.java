@@ -46,7 +46,7 @@ public class LineItem implements Entity<Order, LineItemIdentifier> {
 	}
 
 	public boolean belongsToProduct(ProductIdentifier identifier) {
-		return this.product.pointsToSameAggregateAs(Association.forId(identifier));
+		return this.product.pointsTo(identifier);
 	}
 
 	public LineItem increaseQuantityBy(long amount) {
