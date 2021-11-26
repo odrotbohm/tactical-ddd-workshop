@@ -1,0 +1,32 @@
+= Tactical DDD with Java
+
+This repository contains sample code for my "Tactical DDD with Java" workshop.
+It consists of 4 modules that showcase different aspects of how to write architecturally evident code with jMolecules and structure applications with Moduliths.
+
+== 1. DDD Building Blocks and structural validation
+
+Showcases…
+
+* … how using jMolecules DDD abstractions in a domain model allow to verify rules originating from the concepts expressed via ArchUnit.
+
+== 2. Out of the box port integration for jMolecules types
+
+Showcases…
+
+* … value types and identifiers working as their primitive values in JSON representations.
+
+== 3. Reducing boilerplate code for persistent models
+
+Showcases…
+
+* … the use of jMolecules' ByteBuddy plugin to default the JPA mappings to follow the aggregate structure expressed in the model.
+
+== 4. Building low-coupled modules using Moduliths
+
+Showcases…
+
+* … the package convention to define logical modules.
+* … strictly models cross-aggregate references as jMolecules ``Association``s.
+* … using domain events to implement interaction between modules and avoid bean references across module boundaries.
+* … implementing tests that verify business functionality around the published and consumed events.
+* … the use of Moduliths' `Documenter` to create documentation around the module structure, relevant components of each module and their interaction.
