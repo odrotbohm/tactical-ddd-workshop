@@ -29,12 +29,12 @@ import org.moduliths.test.PublishedEvents;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
 @ModuleTest
 @Transactional
 @RequiredArgsConstructor
-class OrderManagerIntegrationTests {
+class OrderManagementIntegrationTests {
 
 	private final OrderManagement orders;
 

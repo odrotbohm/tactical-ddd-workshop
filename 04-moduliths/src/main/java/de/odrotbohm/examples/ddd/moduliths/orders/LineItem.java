@@ -26,6 +26,7 @@ import java.util.UUID;
 import org.jmolecules.ddd.types.Association;
 import org.jmolecules.ddd.types.Entity;
 import org.jmolecules.ddd.types.Identifier;
+import org.springframework.lang.Nullable;
 
 /**
  * @author Oliver Gierke
@@ -35,7 +36,7 @@ public class LineItem implements Entity<Order, LineItemIdentifier> {
 
 	private final LineItemIdentifier id;
 	private Association<Product, ProductIdentifier> product;
-	private String description;
+	private @Nullable String description;
 	private long amount;
 
 	LineItem(ProductIdentifier productIdentifier, long amount) {

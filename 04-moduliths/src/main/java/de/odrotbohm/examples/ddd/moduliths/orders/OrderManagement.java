@@ -1,12 +1,11 @@
 /*
-
- * Copyright 2017 the original author or authors.
+ * Copyright 2021-2022 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,26 +15,12 @@
  */
 package de.odrotbohm.examples.ddd.moduliths.orders;
 
-import lombok.RequiredArgsConstructor;
-
-import org.jmolecules.ddd.annotation.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
-@Service
-@Transactional
-@RequiredArgsConstructor
-public class OrderManagement {
+public interface OrderManagement {
 
-	private final OrderRepository orders;
+	Order createOrder();
 
-	public Order createOrder() {
-		return orders.save(new Order());
-	}
-
-	public void complete(Order order) {
-		orders.save(order.complete());
-	}
+	void complete(Order order);
 }
