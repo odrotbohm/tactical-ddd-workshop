@@ -19,6 +19,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 import org.moduliths.docs.Documenter;
+import org.moduliths.docs.Documenter.CanvasOptions;
 import org.moduliths.docs.Documenter.Options;
 import org.moduliths.model.Modules;
 
@@ -30,10 +31,20 @@ class DocumentationTests {
 	@Test
 	void createsDocumentation() throws IOException {
 
-		Modules modules = Modules.of(ModulithsApplication.class);
+		var modules = Modules.of(ModulithsApplication.class);
+
+		var canvasOptions = CanvasOptions.defaults().withApiBase("http://localhost:8080/javadoc");
+		var options = Options.defaults();
 
 		new Documenter(modules)
-				.writeModuleCanvases()
-				.writeModulesAsPlantUml(Options.defaults());
+
+				// Overview component diagram
+				.writeModulesAsPlantUml(options)
+
+				// Component diagram per module
+				.writeIndividualModulesAsPlantUml(options)
+
+				// Module overview
+				.writeModuleCanvases(canvasOptions);
 	}
 }

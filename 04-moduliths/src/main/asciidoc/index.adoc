@@ -1,0 +1,16 @@
+= Sample documentation
+:generated-docs: ../../../target/moduliths-docs
+
+== Overview
+plantuml::{generated-docs}/components.uml[,,svg]
+
+== Catalog
+include::{generated-docs}/module-catalog.adoc[]
+
+== Order
+plantuml::{generated-docs}/module-orders.uml[,,svg]
+include::{generated-docs}/module-orders.adoc[]
+
+== Inventory
+plantuml::{generated-docs}/module-inventory.uml[,,svg]
+include::{generated-docs}/module-inventory.adoc[]

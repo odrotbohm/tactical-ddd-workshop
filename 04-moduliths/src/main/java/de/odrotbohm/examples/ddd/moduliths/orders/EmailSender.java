@@ -32,6 +32,11 @@ class EmailSender {
 
 	private @Setter boolean fail = false;
 
+	/**
+	 * Sends out an email to the customer who placed the order on their completion.
+	 *
+	 * @param event
+	 */
 	@Async
 	@TransactionalEventListener
 	void on(OrderCompleted event) {

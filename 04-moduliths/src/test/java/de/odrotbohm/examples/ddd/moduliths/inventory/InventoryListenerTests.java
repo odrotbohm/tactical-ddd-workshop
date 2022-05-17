@@ -15,35 +15,43 @@
  */
 package de.odrotbohm.examples.ddd.moduliths.inventory;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
+import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductAdded;
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductIdentifier;
-import de.odrotbohm.examples.ddd.moduliths.inventory.InventoryItem.OutOfStock;
-import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
-import org.jmolecules.ddd.types.Association;
 import org.junit.jupiter.api.Test;
-import org.moduliths.test.ModuleTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
+ * A unit test for {@link InventoryListener} to make sure it triggers the right functionality on event consumption.
+ *
  * @author Oliver Drotbohm
  */
-@ModuleTest
-@RequiredArgsConstructor
-class InventoryTests {
+@ExtendWith(MockitoExtension.class)
+class InventoryListenerTests {
 
-	private final Inventory inventory;
-	private final InventoryListener listener;
+	@InjectMocks InventoryListener listener;
+	@Mock Inventory inventory;
 
 	@Test
-	void throwsInsufficientStockOnOutOfStock() {
+	void registersShipmentForNewProduct() {
 
-		var productId = ProductIdentifier.of(UUID.randomUUID().toString());
-		inventory.registerShipment(productId, 0);
+		// Given
+		var id = ProductIdentifier.of(UUID.randomUUID().toString());
+		var event = ProductAdded.of(id);
 
-		assertThatExceptionOfType(InsufficientStock.class)
-				.isThrownBy(() -> listener.onOutOfStock(OutOfStock.of(Association.forId(productId))));
+		when(inventory.hasItemFor(id)).thenReturn(false);
+
+		// When
+		listener.onProductAdded(event);
+
+		// Then
+		verify(inventory).registerShipment(id, 0);
 	}
 }

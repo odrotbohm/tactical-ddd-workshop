@@ -21,7 +21,7 @@ import de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderCompleted;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.context.event.EventListener;
+import org.jmolecules.event.annotation.DomainEventHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,8 +36,13 @@ class InventoryListener {
 
 	private final Inventory inventory;
 
-	@EventListener
-	void on(ProductAdded event) {
+	/**
+	 * Initializes the Inventory with a stock of zero for the Product just added.
+	 *
+	 * @param event
+	 */
+	@DomainEventHandler
+	void onProductAdded(ProductAdded event) {
 
 		var identifier = event.getProduct();
 
@@ -49,16 +54,21 @@ class InventoryListener {
 		}
 	}
 
-	@EventListener
-	void on(OrderCompleted event) {
+	/**
+	 * Updates the inventory based on the products referred to by the line items in the Order that was just completed.
+	 *
+	 * @param event
+	 */
+	@DomainEventHandler
+	void onOrderCompleted(OrderCompleted event) {
 
 		log.info("Received completed order {}. Triggering stock update for line items.", event.getOrder());
 
 		inventory.updateStockFor(event.getOrder());
 	}
 
-	@EventListener
-	void on(OutOfStock event) {
+	@DomainEventHandler
+	void onOutOfStock(OutOfStock event) {
 
 		var product = event.getProduct();
 		var id = product.getId();
