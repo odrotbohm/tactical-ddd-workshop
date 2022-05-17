@@ -17,7 +17,7 @@
 	</parent>
 
 	<properties>
-		<bytebuddy.version>1.12.1</bytebuddy.version>
+		<bytebuddy.version>1.12.10</bytebuddy.version>
 		<java.version>17</java.version>
 		<jmolecules.version>2021.2.0</jmolecules.version>
 		<jmolecules-integrations.version>0.6.0</jmolecules-integrations.version>
