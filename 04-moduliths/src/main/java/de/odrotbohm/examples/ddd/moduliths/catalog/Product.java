@@ -52,7 +52,7 @@ public class Product extends AbstractAggregateRoot<Product> implements Aggregate
 	@Value
 	@RequiredArgsConstructor(staticName = "of")
 	public static class ProductIdentifier implements Identifier {
-		String id;
+		String productId;
 	}
 
 	@Value

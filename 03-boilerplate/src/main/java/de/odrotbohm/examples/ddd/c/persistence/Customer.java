@@ -56,6 +56,6 @@ class Customer implements AggregateRoot<Customer, CustomerId> {
 	static class CustomerId implements Serializable, Identifier {
 
 		private static final long serialVersionUID = 1733846413103581113L;
-		private final String id;
+		private final String customerId;
 	}
 }

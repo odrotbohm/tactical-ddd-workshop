@@ -81,7 +81,7 @@ public class Order extends AbstractAggregateRoot<Order> implements AggregateRoot
 
 	@Value(staticConstructor = "of")
 	public static class OrderIdentifier implements Identifier {
-		String id;
+		String orderId;
 	}
 
 	@Value

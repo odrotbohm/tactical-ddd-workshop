@@ -16,8 +16,8 @@
 package de.odrotbohm.examples.ddd.c.persistence;
 
 import de.odrotbohm.examples.ddd.c.persistence.Customer.CustomerId;
-import de.odrotbohm.examples.ddd.c.persistence.Order.OrderId;
 import de.odrotbohm.examples.ddd.c.persistence.Order.LineItem.LineItemId;
+import de.odrotbohm.examples.ddd.c.persistence.Order.OrderId;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -57,7 +57,7 @@ class Order implements AggregateRoot<Order, OrderId> {
 
 	Order(CustomerId customerId) {
 
-		this.id = OrderId.of(UUID.randomUUID());
+		this.id = OrderId.of(UUID.randomUUID().toString());
 		this.customerId = customerId;
 		this.lineItems = new ArrayList<>();
 	}
@@ -76,7 +76,7 @@ class Order implements AggregateRoot<Order, OrderId> {
 	static class OrderId implements Serializable, Identifier {
 
 		private static final long serialVersionUID = 1009997590119941755L;
-		private final UUID value;
+		private final String orderId;
 	}
 
 	@Entity // remove
@@ -90,7 +90,7 @@ class Order implements AggregateRoot<Order, OrderId> {
 
 		LineItem(String description, long amount) {
 
-			this.id = LineItemId.of(UUID.randomUUID());
+			this.id = LineItemId.of(UUID.randomUUID().toString());
 			this.description = description;
 			this.amount = amount;
 		}
@@ -102,7 +102,7 @@ class Order implements AggregateRoot<Order, OrderId> {
 		static class LineItemId implements Serializable, Identifier {
 
 			private static final long serialVersionUID = 1009997590119941755L;
-			private final UUID value;
+			private final String lineItemId;
 		}
 	}
 }
