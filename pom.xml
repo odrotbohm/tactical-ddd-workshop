@@ -21,7 +21,7 @@
 		<java.version>17</java.version>
 		<jmolecules.version>2022.1.0</jmolecules.version>
 		<jmolecules-integrations.version>0.10.0</jmolecules-integrations.version>
-		<moduliths.version>1.3.0-SNAPSHOT</moduliths.version>
+		<moduliths.version>1.3.0</moduliths.version>
 	</properties>
 
 	<modules>
