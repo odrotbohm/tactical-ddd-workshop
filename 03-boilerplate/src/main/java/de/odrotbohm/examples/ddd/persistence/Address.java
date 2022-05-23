@@ -13,49 +13,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.odrotbohm.examples.ddd.c.persistence;
+package de.odrotbohm.examples.ddd.persistence;
 
-import de.odrotbohm.examples.ddd.c.persistence.Customer.CustomerId;
 import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 
-import java.io.Serializable;
-import java.util.UUID;
+import java.util.regex.Pattern;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
 
-import org.jmolecules.ddd.types.AggregateRoot;
-import org.jmolecules.ddd.types.Identifier;
+import org.jmolecules.ddd.types.ValueObject;
 
 /**
  * @author Oliver Drotbohm
  */
-@Getter
-@Entity // remove
+@Value
+@Embeddable // remove
+@RequiredArgsConstructor
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // remove
-class Customer implements AggregateRoot<Customer, CustomerId> {
+class Address implements ValueObject {
 
-	private final @EmbeddedId CustomerId id;
-	private Address address;
+	String street;
+	ZipCode zip;
+	String city;
 
-	Customer(Address address) {
-
-		this.id = CustomerId.of(UUID.randomUUID().toString());
-		this.address = address;
-	}
-
+	@Value
 	@Embeddable // remove
-	@EqualsAndHashCode
-	@RequiredArgsConstructor(staticName = "of")
+	@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 	@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // remove
-	static class CustomerId implements Serializable, Identifier {
+	static class ZipCode implements ValueObject {
 
-		private static final long serialVersionUID = 1733846413103581113L;
-		private final String customerId;
+		private static final Pattern REGEX = Pattern.compile("[0-9]{5}");
+
+		@Column(name = "zipCode") String value;
+
+		public static ZipCode of(String source) {
+
+			if (!REGEX.matcher(source).matches()) {
+				throw new IllegalArgumentException("Invalid zip code %s!".formatted(source));
+			}
+
+			return new ZipCode(source);
+		}
 	}
 }

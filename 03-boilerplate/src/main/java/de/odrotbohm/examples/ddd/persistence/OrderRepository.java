@@ -13,33 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.odrotbohm.examples.ddd.a.structure;
+package de.odrotbohm.examples.ddd.persistence;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import de.odrotbohm.examples.ddd.persistence.Order.OrderId;
 
-import java.util.UUID;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.Repository;
+import org.springframework.data.util.Streamable;
 
 /**
  * @author Oliver Drotbohm
  */
-@Getter
-// @AggregateRoot
-class Order /* implements AggregateRoot<Order, OrderId> */ {
+interface OrderRepository extends Repository<Order, OrderId> {
 
-	private final /* @Identity */ OrderId id;
-	private final Customer customer;
+	Order save(Order customer);
 
-	Order(Customer customer) {
-
-		this.id = OrderId.of(UUID.randomUUID());
-		this.customer = customer;
-	}
-
-	@EqualsAndHashCode
-	@RequiredArgsConstructor(staticName = "of")
-	static class OrderId /* implements Identifier */ {
-		private final UUID value;
-	}
+	@Query("select o from Order o join o.lineItems i where i.amount > :value")
+	Streamable<Order> findByAmountExceeding(long value);
 }

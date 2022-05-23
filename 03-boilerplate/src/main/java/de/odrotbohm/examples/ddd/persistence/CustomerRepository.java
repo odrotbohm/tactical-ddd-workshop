@@ -13,39 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.odrotbohm.examples.ddd.a.structure;
+package de.odrotbohm.examples.ddd.persistence;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import de.odrotbohm.examples.ddd.persistence.Customer.CustomerId;
 
-import java.util.regex.Pattern;
+import org.springframework.data.repository.Repository;
 
 /**
  * @author Oliver Drotbohm
  */
-@Value(staticConstructor = "of")
-class Address {
+interface CustomerRepository extends Repository<Customer, CustomerId> {
 
-	String street;
-	ZipCode zip;
-	String city;
-
-	@Value
-	@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-	static class ZipCode {
-
-		private static final Pattern REGEX = Pattern.compile("[0-9]{5}");
-
-		String value;
-
-		public static ZipCode of(String source) {
-
-			if (!REGEX.matcher(source).matches()) {
-				throw new IllegalArgumentException("Invalid zip code %s!".formatted(source));
-			}
-
-			return new ZipCode(source);
-		}
-	}
+	Customer save(Customer customer);
 }

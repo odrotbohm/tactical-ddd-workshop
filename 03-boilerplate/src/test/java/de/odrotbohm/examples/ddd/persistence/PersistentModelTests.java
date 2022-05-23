@@ -13,12 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.odrotbohm.examples.ddd.c.persistence;
+package de.odrotbohm.examples.ddd.persistence;
 
 import static org.assertj.core.api.Assertions.*;
 
-import de.odrotbohm.examples.ddd.c.persistence.Address.ZipCode;
-import de.odrotbohm.examples.ddd.c.persistence.Order.LineItem;
+import de.odrotbohm.examples.ddd.persistence.Address;
+import de.odrotbohm.examples.ddd.persistence.Customer;
+import de.odrotbohm.examples.ddd.persistence.CustomerRepository;
+import de.odrotbohm.examples.ddd.persistence.Order;
+import de.odrotbohm.examples.ddd.persistence.OrderRepository;
+import de.odrotbohm.examples.ddd.persistence.Address.ZipCode;
+import de.odrotbohm.examples.ddd.persistence.Order.LineItem;
 import lombok.RequiredArgsConstructor;
 
 import org.junit.jupiter.api.Test;

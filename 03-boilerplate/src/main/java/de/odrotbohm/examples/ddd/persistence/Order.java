@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.odrotbohm.examples.ddd.c.persistence;
+package de.odrotbohm.examples.ddd.persistence;
 
-import de.odrotbohm.examples.ddd.c.persistence.Customer.CustomerId;
-import de.odrotbohm.examples.ddd.c.persistence.Order.LineItem.LineItemId;
-import de.odrotbohm.examples.ddd.c.persistence.Order.OrderId;
+import de.odrotbohm.examples.ddd.persistence.Customer.CustomerId;
+import de.odrotbohm.examples.ddd.persistence.Order.OrderId;
+import de.odrotbohm.examples.ddd.persistence.Order.LineItem.LineItemId;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
