@@ -16,6 +16,7 @@
  */
 package de.odrotbohm.examples.ddd.moduliths.orders;
 
+import de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderIdentifier;
 import lombok.RequiredArgsConstructor;
 
 import org.jmolecules.ddd.annotation.Service;
@@ -38,6 +39,15 @@ class DefaultOrderManagement implements OrderManagement {
 	@Override
 	public Order createOrder() {
 		return orders.save(new Order());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see de.odrotbohm.examples.ddd.moduliths.orders.OrderManagement#findOrder(de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderIdentifier)
+	 */
+	@Override
+	public Order findOrder(OrderIdentifier identifier) {
+		return orders.findById(identifier).orElse(null);
 	}
 
 	/*

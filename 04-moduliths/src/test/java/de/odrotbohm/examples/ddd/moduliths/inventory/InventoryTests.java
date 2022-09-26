@@ -19,23 +19,27 @@ import static org.assertj.core.api.Assertions.*;
 
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductIdentifier;
 import de.odrotbohm.examples.ddd.moduliths.inventory.InventoryItem.OutOfStock;
+import de.odrotbohm.examples.ddd.moduliths.orders.OrderManagement;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
 import org.jmolecules.ddd.types.Association;
 import org.junit.jupiter.api.Test;
-import org.moduliths.test.ModuleTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.modulith.test.ApplicationModuleTest;
 
 /**
  * @author Oliver Drotbohm
  */
-@ModuleTest
+@ApplicationModuleTest
 @RequiredArgsConstructor
 class InventoryTests {
 
 	private final Inventory inventory;
 	private final InventoryListener listener;
+
+	@MockBean OrderManagement orders;
 
 	@Test
 	void throwsInsufficientStockOnOutOfStock() {

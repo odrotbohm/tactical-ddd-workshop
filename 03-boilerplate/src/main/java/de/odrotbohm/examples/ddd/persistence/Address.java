@@ -15,15 +15,14 @@
  */
 package de.odrotbohm.examples.ddd.persistence;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
 import java.util.regex.Pattern;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 
 import org.jmolecules.ddd.types.ValueObject;
 

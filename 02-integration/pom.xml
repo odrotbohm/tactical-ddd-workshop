@@ -11,6 +11,7 @@
 		<groupId>de.odrotbohm.examples</groupId>
 		<artifactId>tactical-ddd-workshop</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<dependencies>

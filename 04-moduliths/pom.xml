@@ -11,7 +11,20 @@
 		<groupId>de.odrotbohm.examples</groupId>
 		<artifactId>tactical-ddd-workshop</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.experimental</groupId>
+				<artifactId>spring-modulith-bom</artifactId>
+				<version>${spring-modulith.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 
@@ -24,17 +37,15 @@
 			<groupId>org.jmolecules</groupId>
 			<artifactId>jmolecules-events</artifactId>
 		</dependency>
-		
+
 		<dependency>
-			<groupId>org.moduliths</groupId>
-			<artifactId>moduliths-starter-jpa</artifactId>
-			<version>${moduliths.version}</version>
+			<groupId>org.springframework.experimental</groupId>
+			<artifactId>spring-modulith-starter-jpa</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.moduliths</groupId>
-			<artifactId>moduliths-starter-test</artifactId>
-			<version>${moduliths.version}</version>
+			<groupId>org.springframework.experimental</groupId>
+			<artifactId>spring-modulith-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -71,6 +82,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.jmolecules.integrations</groupId>
+			<artifactId>jmolecules-bytebuddy-nodep</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>capital.scalable</groupId>
 			<artifactId>spring-auto-restdocs-core</artifactId>
 			<version>2.0.11</version>
@@ -92,20 +108,16 @@
 						</goals>
 					</execution>
 				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.jmolecules.integrations</groupId>
-						<artifactId>jmolecules-bytebuddy</artifactId>
-						<version>${jmolecules-integrations.version}</version>
-					</dependency>
-				</dependencies>
+				<configuration>
+					<classPathDiscovery>true</classPathDiscovery>
+				</configuration>
 			</plugin>
-			
+
 			<!--
-			
+
 				Enable custom Javadoc Doclet to extract Javadoc into a JSON File
 				so that it can be included in generated documentation.
-			
+
 			-->
 
 			<plugin>

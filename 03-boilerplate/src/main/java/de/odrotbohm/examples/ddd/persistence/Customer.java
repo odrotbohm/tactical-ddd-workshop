@@ -16,6 +16,9 @@
 package de.odrotbohm.examples.ddd.persistence;
 
 import de.odrotbohm.examples.ddd.persistence.Customer.CustomerId;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,10 +27,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 import java.util.UUID;
-
-import javax.persistence.Embeddable;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
 
 import org.jmolecules.ddd.types.AggregateRoot;
 import org.jmolecules.ddd.types.Identifier;

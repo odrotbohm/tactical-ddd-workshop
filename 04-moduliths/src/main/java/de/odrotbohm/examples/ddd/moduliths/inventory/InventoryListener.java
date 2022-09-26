@@ -18,6 +18,7 @@ package de.odrotbohm.examples.ddd.moduliths.inventory;
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductAdded;
 import de.odrotbohm.examples.ddd.moduliths.inventory.InventoryItem.OutOfStock;
 import de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderCompleted;
+import de.odrotbohm.examples.ddd.moduliths.orders.OrderManagement;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +36,7 @@ import org.springframework.transaction.annotation.Transactional;
 class InventoryListener {
 
 	private final Inventory inventory;
+	private final OrderManagement orders;
 
 	/**
 	 * Initializes the Inventory with a stock of zero for the Product just added.
@@ -62,9 +64,9 @@ class InventoryListener {
 	@DomainEventHandler
 	void onOrderCompleted(OrderCompleted event) {
 
-		log.info("Received completed order {}. Triggering stock update for line items.", event.getOrder());
+		log.info("Received completed order {}. Triggering stock update for line items.", event.getOrderIdentifier());
 
-		inventory.updateStockFor(event.getOrder());
+		inventory.updateStockFor(orders.findOrder(event.getOrderIdentifier()));
 	}
 
 	@DomainEventHandler

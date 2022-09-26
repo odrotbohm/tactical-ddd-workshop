@@ -15,12 +15,16 @@
  */
 package de.odrotbohm.examples.ddd.moduliths.orders;
 
+import de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderIdentifier;
+
 /**
  * @author Oliver Drotbohm
  */
 public interface OrderManagement {
 
 	Order createOrder();
+
+	Order findOrder(OrderIdentifier identifier);
 
 	void complete(Order order);
 }

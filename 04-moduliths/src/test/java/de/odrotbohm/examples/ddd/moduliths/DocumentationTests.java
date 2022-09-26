@@ -18,10 +18,10 @@ package de.odrotbohm.examples.ddd.moduliths;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
-import org.moduliths.docs.Documenter;
-import org.moduliths.docs.Documenter.CanvasOptions;
-import org.moduliths.docs.Documenter.Options;
-import org.moduliths.model.Modules;
+import org.springframework.modulith.docs.Documenter;
+import org.springframework.modulith.docs.Documenter.CanvasOptions;
+import org.springframework.modulith.docs.Documenter.Options;
+import org.springframework.modulith.model.ApplicationModules;
 
 /**
  * @author Oliver Drotbohm
@@ -31,7 +31,7 @@ class DocumentationTests {
 	@Test
 	void createsDocumentation() throws IOException {
 
-		var modules = Modules.of(ModulithsApplication.class);
+		var modules = ApplicationModules.of(ModulithsApplication.class);
 
 		var canvasOptions = CanvasOptions.defaults().withApiBase("http://localhost:8080/javadoc");
 		var options = Options.defaults();

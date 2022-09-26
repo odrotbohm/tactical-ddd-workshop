@@ -24,14 +24,14 @@ import lombok.RequiredArgsConstructor;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
-import org.moduliths.test.ModuleTest;
-import org.moduliths.test.PublishedEvents;
+import org.springframework.modulith.test.ApplicationModuleTest;
+import org.springframework.modulith.test.PublishedEvents;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Oliver Drotbohm
  */
-@ModuleTest
+@ApplicationModuleTest
 @Transactional
 @RequiredArgsConstructor
 class OrderManagementIntegrationTests {
@@ -47,6 +47,6 @@ class OrderManagementIntegrationTests {
 		orders.complete(order);
 
 		assertThat(events.ofType(OrderCompleted.class)
-				.matchingMapped(OrderCompleted::getOrder, order::equals));
+				.matchingMapped(OrderCompleted::getOrderIdentifier, order::equals));
 	}
 }

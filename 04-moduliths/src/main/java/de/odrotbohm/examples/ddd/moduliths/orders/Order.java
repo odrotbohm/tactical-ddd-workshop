@@ -17,6 +17,7 @@ package de.odrotbohm.examples.ddd.moduliths.orders;
 
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductIdentifier;
 import de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderIdentifier;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,8 +28,6 @@ import lombok.With;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import javax.persistence.Table;
 
 import org.jmolecules.ddd.types.AggregateRoot;
 import org.jmolecules.ddd.types.Identifier;
@@ -72,7 +71,7 @@ public class Order extends AbstractAggregateRoot<Order> implements AggregateRoot
 
 		return withStatus(Status.COMPLETED) //
 				.andEventsFrom(this) //
-				.andEvent(OrderCompleted.of(this));
+				.andEvent(OrderCompleted.of(id));
 	}
 
 	public enum Status {
@@ -89,6 +88,6 @@ public class Order extends AbstractAggregateRoot<Order> implements AggregateRoot
 			access = AccessLevel.PRIVATE,
 			onConstructor = @__(@JsonCreator))
 	public static class OrderCompleted implements DomainEvent {
-		Order order;
+		OrderIdentifier orderIdentifier;
 	}
 }

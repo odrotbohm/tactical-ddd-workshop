@@ -15,11 +15,13 @@
  */
 package de.odrotbohm.examples.ddd.moduliths.orders;
 
+import de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderIdentifier;
+
 import org.springframework.data.repository.CrudRepository;
 
 /**
  * @author Oliver Gierke
  */
-interface OrderRepository extends CrudRepository<Order, Long> {
+interface OrderRepository extends CrudRepository<Order, OrderIdentifier> {
 
 }

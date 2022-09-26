@@ -41,7 +41,7 @@ class EmailSender {
 	@TransactionalEventListener
 	void on(OrderCompleted event) {
 
-		log.info("Sending email for order {}.", event.getOrder());
+		log.info("Sending email for order {}.", event.getOrderIdentifier());
 
 		try {
 			Thread.sleep(1000);
@@ -51,6 +51,6 @@ class EmailSender {
 			throw new RuntimeException();
 		}
 
-		log.info("Successfully sent email for order {}.", event.getOrder());
+		log.info("Successfully sent email for order {}.", event.getOrderIdentifier());
 	}
 }

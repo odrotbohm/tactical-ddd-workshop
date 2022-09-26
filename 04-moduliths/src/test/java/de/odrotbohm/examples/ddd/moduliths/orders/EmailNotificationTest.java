@@ -23,22 +23,26 @@ import lombok.Value;
 
 import java.util.UUID;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.moduliths.events.EventPublicationRegistry;
-import org.moduliths.test.ModuleTest;
-import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.modulith.events.EventPublicationRegistry;
+import org.springframework.modulith.test.ApplicationModuleTest;
 
 /**
  * @author Oliver Drotbohm
  */
 @Value
-@ModuleTest
-@DirtiesContext
+@ApplicationModuleTest
 class EmailNotificationTest {
 
 	OrderManagement orders;
 	EventPublicationRegistry registry;
 	EmailSender emails;
+
+	@BeforeEach
+	void setUp() {
+		emails.setFail(false);
+	}
 
 	@Test
 	void completingAnOrderUpdatesInventory() throws Exception {

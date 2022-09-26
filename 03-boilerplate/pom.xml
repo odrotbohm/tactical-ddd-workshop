@@ -11,6 +11,7 @@
 		<groupId>de.odrotbohm.examples</groupId>
 		<artifactId>tactical-ddd-workshop</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<dependencies>
@@ -42,6 +43,12 @@
 		</dependency>
 		 -->
 
+		<dependency>
+			<groupId>org.jmolecules.integrations</groupId>
+			<artifactId>jmolecules-bytebuddy-nodep</artifactId>
+			<version>0.12.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -59,13 +66,9 @@
 						</goals>
 					</execution>
 				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.jmolecules.integrations</groupId>
-						<artifactId>jmolecules-bytebuddy</artifactId>
-						<version>${jmolecules-integrations.version}</version>
-					</dependency>
-				</dependencies>
+				<configuration>
+					<classPathDiscovery>true</classPathDiscovery>
+				</configuration>
 			</plugin>
 			-->
 

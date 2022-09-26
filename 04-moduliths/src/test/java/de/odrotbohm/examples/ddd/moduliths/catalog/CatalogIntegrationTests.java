@@ -24,15 +24,15 @@ import lombok.RequiredArgsConstructor;
 import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
-import org.moduliths.test.ModuleTest;
-import org.moduliths.test.PublishedEvents;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.modulith.test.ApplicationModuleTest;
+import org.springframework.modulith.test.PublishedEvents;
 
 /**
  * @author Oliver Drotbohm
  */
-@ModuleTest
+@ApplicationModuleTest
 @RequiredArgsConstructor
 class CatalogIntegrationTests {
 
