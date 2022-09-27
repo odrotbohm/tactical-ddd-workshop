@@ -17,11 +17,6 @@ package de.odrotbohm.examples.ddd.persistence;
 
 import static org.assertj.core.api.Assertions.*;
 
-import de.odrotbohm.examples.ddd.persistence.Address;
-import de.odrotbohm.examples.ddd.persistence.Customer;
-import de.odrotbohm.examples.ddd.persistence.CustomerRepository;
-import de.odrotbohm.examples.ddd.persistence.Order;
-import de.odrotbohm.examples.ddd.persistence.OrderRepository;
 import de.odrotbohm.examples.ddd.persistence.Address.ZipCode;
 import de.odrotbohm.examples.ddd.persistence.Order.LineItem;
 import lombok.RequiredArgsConstructor;
