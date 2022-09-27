@@ -42,7 +42,7 @@ class OrderManagementIntegrationTests {
 	void completingAnOrderUpdatesInventory(PublishedEvents events) {
 
 		var order = orders.createOrder()
-				.add(ProductIdentifier.of(UUID.randomUUID().toString()), 5);
+				.add(ProductIdentifier.of(UUID.randomUUID()), 5);
 
 		orders.complete(order);
 

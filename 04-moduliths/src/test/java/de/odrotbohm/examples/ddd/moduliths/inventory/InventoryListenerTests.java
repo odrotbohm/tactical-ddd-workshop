@@ -43,7 +43,7 @@ class InventoryListenerTests {
 	void registersShipmentForNewProduct() {
 
 		// Given
-		var id = ProductIdentifier.of(UUID.randomUUID().toString());
+		var id = ProductIdentifier.of(UUID.randomUUID());
 		var event = ProductAdded.of(id);
 
 		when(inventory.hasItemFor(id)).thenReturn(false);

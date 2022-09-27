@@ -44,7 +44,7 @@ class InventoryItem extends AbstractAggregateRoot<InventoryItem>
 
 	InventoryItem(ProductIdentifier productIdentifier, long amount) {
 
-		this.id = new InventoryItemIdentifier(UUID.randomUUID().toString());
+		this.id = new InventoryItemIdentifier(UUID.randomUUID());
 		this.product = Association.forId(productIdentifier);
 		this.amount = amount;
 	}
@@ -69,7 +69,7 @@ class InventoryItem extends AbstractAggregateRoot<InventoryItem>
 
 	@Value
 	public static class InventoryItemIdentifier implements Identifier {
-		String itemId;
+		UUID itemId;
 	}
 
 	@Value

@@ -47,7 +47,7 @@ class EmailNotificationTest {
 	@Test
 	void completingAnOrderUpdatesInventory() throws Exception {
 
-		var identifier = ProductIdentifier.of(UUID.randomUUID().toString());
+		var identifier = ProductIdentifier.of(UUID.randomUUID());
 		var order = orders.createOrder()
 				.add(identifier, 5);
 
@@ -72,7 +72,7 @@ class EmailNotificationTest {
 		emails.setFail(true);
 
 		var order = orders.createOrder()
-				.add(ProductIdentifier.of(UUID.randomUUID().toString()), 5);
+				.add(ProductIdentifier.of(UUID.randomUUID()), 5);
 
 		orders.complete(order);
 

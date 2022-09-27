@@ -50,7 +50,7 @@ public class Order extends AbstractAggregateRoot<Order> implements AggregateRoot
 
 	Order() {
 
-		this.id = new OrderIdentifier(UUID.randomUUID().toString());
+		this.id = new OrderIdentifier(UUID.randomUUID());
 		this.lineItems = new ArrayList<>();
 		this.status = Status.SUBMITTED;
 	}
@@ -80,7 +80,7 @@ public class Order extends AbstractAggregateRoot<Order> implements AggregateRoot
 
 	@Value(staticConstructor = "of")
 	public static class OrderIdentifier implements Identifier {
-		String orderId;
+		UUID orderId;
 	}
 
 	@Value

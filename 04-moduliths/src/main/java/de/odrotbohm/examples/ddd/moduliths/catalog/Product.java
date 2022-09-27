@@ -42,7 +42,7 @@ public class Product extends AbstractAggregateRoot<Product> implements Aggregate
 
 	public Product(String name, BigDecimal price) {
 
-		this.id = new ProductIdentifier(UUID.randomUUID().toString());
+		this.id = new ProductIdentifier(UUID.randomUUID());
 		this.name = name;
 		this.price = price;
 
@@ -52,7 +52,7 @@ public class Product extends AbstractAggregateRoot<Product> implements Aggregate
 	@Value
 	@RequiredArgsConstructor(staticName = "of")
 	public static class ProductIdentifier implements Identifier {
-		String productId;
+		UUID productId;
 	}
 
 	@Value
