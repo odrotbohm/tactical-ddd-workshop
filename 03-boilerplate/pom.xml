@@ -46,7 +46,6 @@
 		<dependency>
 			<groupId>org.jmolecules.integrations</groupId>
 			<artifactId>jmolecules-bytebuddy-nodep</artifactId>
-			<version>0.12.0</version>
 		</dependency>
 
 	</dependencies>

@@ -19,7 +19,7 @@
 	<properties>
 		<bytebuddy.version>1.12.17</bytebuddy.version>
 		<java.version>17</java.version>
-		<jmolecules.version>2022.2.1</jmolecules.version>
+		<jmolecules.version>2022.2.2-SNAPSHOT</jmolecules.version>
 		<spring-modulith.version>0.1.0-SNAPSHOT</spring-modulith.version>
 	</properties>
 
