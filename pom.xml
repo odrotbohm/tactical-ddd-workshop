@@ -17,6 +17,7 @@
 	</parent>
 
 	<properties>
+		<archunit.version>1.0.0</archunit.version>
 		<bytebuddy.version>1.12.18</bytebuddy.version>
 		<java.version>17</java.version>
 		<jmolecules.version>2022.2.2-SNAPSHOT</jmolecules.version>
