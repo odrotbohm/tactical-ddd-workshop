@@ -20,7 +20,8 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.springframework.modulith.docs.Documenter;
 import org.springframework.modulith.docs.Documenter.CanvasOptions;
-import org.springframework.modulith.docs.Documenter.Options;
+import org.springframework.modulith.docs.Documenter.DiagramOptions;
+import org.springframework.modulith.docs.Documenter.DiagramOptions.DiagramStyle;
 import org.springframework.modulith.model.ApplicationModules;
 
 /**
@@ -33,8 +34,11 @@ class DocumentationTests {
 
 		var modules = ApplicationModules.of(ModulithsApplication.class);
 
-		var canvasOptions = CanvasOptions.defaults().withApiBase("http://localhost:8080/javadoc");
-		var options = Options.defaults();
+		var canvasOptions = CanvasOptions.defaults()
+				.withApiBase("http://localhost:8080/javadoc");
+
+		var options = DiagramOptions.defaults()
+				.withStyle(DiagramStyle.UML);
 
 		new Documenter(modules)
 
