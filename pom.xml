@@ -20,7 +20,7 @@
 		<archunit.version>1.0.0</archunit.version>
 		<bytebuddy.version>1.12.18</bytebuddy.version>
 		<java.version>17</java.version>
-		<jmolecules.version>2022.2.2-SNAPSHOT</jmolecules.version>
+		<jmolecules.version>2022.2.2</jmolecules.version>
 		<spring-modulith.version>0.1.0-M2</spring-modulith.version>
 	</properties>
 
