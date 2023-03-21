@@ -18,10 +18,10 @@
 
 	<properties>
 		<archunit.version>1.0.0</archunit.version>
-		<bytebuddy.version>1.12.18</bytebuddy.version>
+		<bytebuddy.version>1.14.2</bytebuddy.version>
 		<java.version>17</java.version>
-		<jmolecules.version>2022.2.2</jmolecules.version>
-		<spring-modulith.version>0.1.0-RC1</spring-modulith.version>
+		<jmolecules.version>2022.2.4</jmolecules.version>
+		<spring-modulith.version>0.5.0</spring-modulith.version>
 	</properties>
 
 	<modules>

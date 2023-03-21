@@ -28,15 +28,7 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>org.jmolecules</groupId>
-			<artifactId>jmolecules-ddd</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jmolecules</groupId>
-			<artifactId>jmolecules-events</artifactId>
-		</dependency>
+		<!-- Spring Modulith -->
 
 		<dependency>
 			<groupId>org.springframework.experimental</groupId>
@@ -66,19 +58,23 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.jmolecules.integrations</groupId>
-			<artifactId>jmolecules-jpa</artifactId>
-		</dependency>
+		<!-- jMolecules -->
 
 		<dependency>
 			<groupId>org.jmolecules.integrations</groupId>
-			<artifactId>jmolecules-spring</artifactId>
+			<artifactId>jmolecules-starter-ddd</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jmolecules.integrations</groupId>
 			<artifactId>jmolecules-jackson</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jmolecules.integrations</groupId>
+			<artifactId>jmolecules-jpa</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -104,7 +100,7 @@
 				<executions>
 					<execution>
 						<goals>
-							<goal>transform</goal>
+							<goal>transform-extended</goal>
 						</goals>
 					</execution>
 				</executions>
