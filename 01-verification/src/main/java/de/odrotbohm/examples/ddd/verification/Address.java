@@ -15,29 +15,18 @@
  */
 package de.odrotbohm.examples.ddd.verification;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import de.odrotbohm.examples.ddd.verification.Address.ZipCode;
 
 import java.util.regex.Pattern;
 
 /**
  * @author Oliver Drotbohm
  */
-@Value(staticConstructor = "of")
-class Address {
+record Address(String street, ZipCode zip, String city) {
 
-	String street;
-	ZipCode zip;
-	String city;
-
-	@Value
-	@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-	static class ZipCode {
+	record ZipCode(String value) {
 
 		private static final Pattern REGEX = Pattern.compile("[0-9]{5}");
-
-		String value;
 
 		public static ZipCode of(String source) {
 

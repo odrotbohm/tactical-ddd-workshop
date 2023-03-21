@@ -26,13 +26,16 @@ import org.jmolecules.ddd.types.Association;
 import org.jmolecules.ddd.types.Identifier;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
+import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 
 /**
  * @author Oliver Drotbohm
  */
-@AnalyzeClasses(packagesOf = AggregateStructureVerificationTests.class)
+@AnalyzeClasses(
+		packagesOf = AggregateStructureVerificationTests.class,
+		importOptions = ImportOption.DoNotIncludeTests.class)
 class AggregateStructureVerificationTests {
 
 	/**
