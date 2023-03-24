@@ -21,12 +21,15 @@ import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductIdentifier;
 import de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderCompleted;
 import lombok.Value;
 
+import java.time.Duration;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.modulith.events.EventPublicationRegistry;
 import org.springframework.modulith.test.ApplicationModuleTest;
+import org.springframework.modulith.test.Scenario;
 
 /**
  * @author Oliver Drotbohm
@@ -45,44 +48,45 @@ class EmailNotificationTest {
 	}
 
 	@Test
-	void completingAnOrderUpdatesInventory() throws Exception {
+	void completingAnOrderUpdatesInventory(Scenario scenario) throws Exception {
 
-		var identifier = ProductIdentifier.of(UUID.randomUUID());
+		var identifier = new ProductIdentifier(UUID.randomUUID());
 		var order = orders.createOrder()
 				.add(identifier, 5);
 
-		orders.complete(order);
-
-		// Publication registration left
-		var publications = registry.findIncompletePublications();
-
-		assertThat(publications)
-				.hasSize(1)
-				.allMatch(it -> it.getEvent() instanceof OrderCompleted);
-
-		Thread.sleep(1200);
-
-		// Publication registration left
-		assertThat(registry.findIncompletePublications()).isEmpty();
+		scenario.stimulate(() -> orders.complete(order))
+				.customize(it -> it.pollDelay(1200, TimeUnit.MILLISECONDS))
+				.andWaitForEventOfType(OrderCompleted.class)
+				.toArriveAndVerify(__ -> {
+					assertThat(registry.findIncompletePublications()).isEmpty();
+				});
+		//
+		// // Publication registration left
+		// var publications = registry.findIncompletePublications();
+		//
+		// assertThat(publications)
+		// .hasSize(1)
+		// .allMatch(it -> it.getEvent() instanceof OrderCompleted);
+		//
+		// Thread.sleep(1200);
+		//
+		// // Publication registration left
+		// assertThat(registry.findIncompletePublications()).isEmpty();
 	}
 
 	@Test
-	void systemCrashDuringTransactionalListenerExecutionKeepsPublicationRegistration() throws Exception {
+	void systemCrashDuringTransactionalListenerExecutionKeepsPublicationRegistration(Scenario scenario) throws Exception {
 
 		emails.setFail(true);
 
 		var order = orders.createOrder()
-				.add(ProductIdentifier.of(UUID.randomUUID()), 5);
+				.add(new ProductIdentifier(UUID.randomUUID()), 5);
 
-		orders.complete(order);
-
-		Thread.sleep(1200);
-
-		// Publication registration left
-		var publications = registry.findIncompletePublications();
-
-		assertThat(publications)
-				.hasSize(1)
-				.allMatch(it -> it.getEvent() instanceof OrderCompleted);
+		scenario.stimulate(() -> orders.complete(order))
+				.customize(it -> it.pollDelay(Duration.ofMillis(1200)))
+				.andWaitForEventOfType(OrderCompleted.class)
+				.toArriveAndVerify(__ -> {
+					assertThat(registry.findIncompletePublications().size()).isEqualTo(1);
+				});
 	}
 }

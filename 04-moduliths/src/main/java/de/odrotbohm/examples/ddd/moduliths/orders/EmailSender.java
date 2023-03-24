@@ -41,16 +41,17 @@ class EmailSender {
 	@TransactionalEventListener
 	void on(OrderCompleted event) {
 
-		log.info("Sending email for order {}.", event.getOrderIdentifier());
+		log.info("Sending email for order {}.", event.orderIdentifier());
 
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException o_O) {}
 
 		if (fail) {
-			throw new RuntimeException();
+			log.info("Failing to sent email for order {}.", event.orderIdentifier());
+			throw new RuntimeException("(╯°□°）╯︵ ┻━┻");
 		}
 
-		log.info("Successfully sent email for order {}.", event.getOrderIdentifier());
+		log.info("Successfully sent email for order {}.", event.orderIdentifier());
 	}
 }

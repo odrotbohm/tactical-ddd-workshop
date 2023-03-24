@@ -34,7 +34,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
  * @author Oliver Drotbohm
  */
 @ExtendWith(MockitoExtension.class)
-class InventoryListenerTests {
+class InventoryListenerUnitTests {
 
 	@InjectMocks InventoryListener listener;
 	@Mock Inventory inventory;
@@ -43,8 +43,8 @@ class InventoryListenerTests {
 	void registersShipmentForNewProduct() {
 
 		// Given
-		var id = ProductIdentifier.of(UUID.randomUUID());
-		var event = ProductAdded.of(id);
+		var id = new ProductIdentifier(UUID.randomUUID());
+		var event = new ProductAdded(id);
 
 		when(inventory.hasItemFor(id)).thenReturn(false);
 

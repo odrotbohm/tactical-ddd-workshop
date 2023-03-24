@@ -34,7 +34,7 @@ import org.springframework.modulith.test.ApplicationModuleTest;
  */
 @ApplicationModuleTest
 @RequiredArgsConstructor
-class InventoryTests {
+class InventoryIntegrationTests {
 
 	private final Inventory inventory;
 	private final InventoryListener listener;
@@ -44,10 +44,10 @@ class InventoryTests {
 	@Test
 	void throwsInsufficientStockOnOutOfStock() {
 
-		var productId = ProductIdentifier.of(UUID.randomUUID());
+		var productId = new ProductIdentifier(UUID.randomUUID());
 		inventory.registerShipment(productId, 0);
 
 		assertThatExceptionOfType(InsufficientStock.class)
-				.isThrownBy(() -> listener.onOutOfStock(OutOfStock.of(Association.forId(productId))));
+				.isThrownBy(() -> listener.onOutOfStock(new OutOfStock(Association.forId(productId))));
 	}
 }

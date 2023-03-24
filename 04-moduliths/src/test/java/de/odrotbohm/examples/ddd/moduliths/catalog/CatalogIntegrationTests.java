@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.modulith.test.ApplicationModuleTest;
-import org.springframework.modulith.test.PublishedEvents;
+import org.springframework.modulith.test.Scenario;
 
 /**
  * @author Oliver Drotbohm
@@ -49,14 +49,13 @@ class CatalogIntegrationTests {
 	}
 
 	@Test
-	void publishesEventOnProductCreation(PublishedEvents events) {
+	void publishesEventOnProductCreation(Scenario scenario) {
 
 		var product = new Product("Some product", BigDecimal.valueOf(29.99));
 
-		catalog.save(product);
-
-		assertThat(events.ofType(ProductAdded.class)
-				.matchingMapped(ProductAdded::getProduct, it -> it.equals(product.getId())))
-						.hasSize(1);
+		scenario.stimulate(() -> catalog.save(product))
+				.andWaitForEventOfType(ProductAdded.class)
+				.matchingMappedValue(ProductAdded::product, product.getId())
+				.toArrive();
 	}
 }

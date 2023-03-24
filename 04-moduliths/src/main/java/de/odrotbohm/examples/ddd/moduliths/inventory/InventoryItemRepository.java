@@ -17,6 +17,7 @@ package de.odrotbohm.examples.ddd.moduliths.inventory;
 
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product;
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductIdentifier;
+import de.odrotbohm.examples.ddd.moduliths.inventory.InventoryItem.InventoryItemIdentifier;
 
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * @author Oliver Gierke
  */
-interface InventoryItemRepository extends CrudRepository<InventoryItem, Long> {
+interface InventoryItemRepository extends CrudRepository<InventoryItem, InventoryItemIdentifier> {
 
 	Optional<InventoryItem> findByProduct(Association<Product, ?> association);
 

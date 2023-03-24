@@ -18,11 +18,11 @@ package de.odrotbohm.examples.ddd.moduliths;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.modulith.core.ApplicationModules;
 import org.springframework.modulith.docs.Documenter;
 import org.springframework.modulith.docs.Documenter.CanvasOptions;
 import org.springframework.modulith.docs.Documenter.DiagramOptions;
 import org.springframework.modulith.docs.Documenter.DiagramOptions.DiagramStyle;
-import org.springframework.modulith.model.ApplicationModules;
 
 /**
  * @author Oliver Drotbohm

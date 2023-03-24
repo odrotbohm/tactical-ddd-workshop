@@ -18,10 +18,7 @@ package de.odrotbohm.examples.ddd.moduliths.inventory;
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product;
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductIdentifier;
 import de.odrotbohm.examples.ddd.moduliths.inventory.InventoryItem.InventoryItemIdentifier;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
 
 import java.util.UUID;
 
@@ -32,7 +29,7 @@ import org.jmolecules.event.types.DomainEvent;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
 @Getter
 class InventoryItem extends AbstractAggregateRoot<InventoryItem>
@@ -59,7 +56,7 @@ class InventoryItem extends AbstractAggregateRoot<InventoryItem>
 	InventoryItem reduceStockBy(long amount) {
 
 		if (this.amount < amount) {
-			registerEvent(OutOfStock.of(product));
+			registerEvent(new OutOfStock(product));
 		}
 
 		this.amount = this.amount - amount;
@@ -67,14 +64,7 @@ class InventoryItem extends AbstractAggregateRoot<InventoryItem>
 		return this;
 	}
 
-	@Value
-	public static class InventoryItemIdentifier implements Identifier {
-		UUID itemId;
-	}
+	public record InventoryItemIdentifier(UUID itemId) implements Identifier {}
 
-	@Value
-	@RequiredArgsConstructor(staticName = "of", access = AccessLevel.PACKAGE)
-	public static class OutOfStock implements DomainEvent {
-		Association<Product, ProductIdentifier> product;
-	}
+	public record OutOfStock(Association<Product, ProductIdentifier> product) implements DomainEvent {}
 }

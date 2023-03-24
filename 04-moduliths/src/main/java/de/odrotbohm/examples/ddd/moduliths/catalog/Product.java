@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 the original author or authors.
+ * Copyright 2017-2023 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,7 @@
 package de.odrotbohm.examples.ddd.moduliths.catalog;
 
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductIdentifier;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -31,7 +27,7 @@ import org.jmolecules.event.types.DomainEvent;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
 @Getter
 public class Product extends AbstractAggregateRoot<Product> implements AggregateRoot<Product, ProductIdentifier> {
@@ -46,19 +42,10 @@ public class Product extends AbstractAggregateRoot<Product> implements Aggregate
 		this.name = name;
 		this.price = price;
 
-		registerEvent(ProductAdded.of(id));
+		registerEvent(new ProductAdded(id));
 	}
 
-	@Value
-	@RequiredArgsConstructor(staticName = "of")
-	public static class ProductIdentifier implements Identifier {
-		UUID productId;
-	}
+	public record ProductIdentifier(UUID productId) implements Identifier {}
 
-	@Value
-	@RequiredArgsConstructor(staticName = "of")
-	@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-	public static class ProductAdded implements DomainEvent {
-		ProductIdentifier product;
-	}
+	public record ProductAdded(ProductIdentifier product) implements DomainEvent {}
 }

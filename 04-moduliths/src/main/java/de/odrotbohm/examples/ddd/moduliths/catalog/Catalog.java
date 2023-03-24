@@ -15,9 +15,11 @@
  */
 package de.odrotbohm.examples.ddd.moduliths.catalog;
 
+import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductIdentifier;
+
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
-public interface Catalog extends CrudRepository<Product, Long> {}
+public interface Catalog extends CrudRepository<Product, ProductIdentifier> {}

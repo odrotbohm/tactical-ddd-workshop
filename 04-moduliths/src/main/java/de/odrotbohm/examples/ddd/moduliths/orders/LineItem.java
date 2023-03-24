@@ -19,7 +19,6 @@ import de.odrotbohm.examples.ddd.moduliths.catalog.Product;
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductIdentifier;
 import de.odrotbohm.examples.ddd.moduliths.orders.LineItem.LineItemIdentifier;
 import lombok.Getter;
-import lombok.Value;
 
 import java.util.UUID;
 
@@ -29,7 +28,7 @@ import org.jmolecules.ddd.types.Identifier;
 import org.springframework.lang.Nullable;
 
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
 @Getter
 public class LineItem implements Entity<Order, LineItemIdentifier> {
@@ -57,8 +56,5 @@ public class LineItem implements Entity<Order, LineItemIdentifier> {
 		return this;
 	}
 
-	@Value
-	public static class LineItemIdentifier implements Identifier {
-		String lineItemId;
-	}
+	public record LineItemIdentifier(String lineItemId) implements Identifier {}
 }

@@ -46,7 +46,7 @@ class InventoryListener {
 	@DomainEventHandler
 	void onProductAdded(ProductAdded event) {
 
-		var identifier = event.getProduct();
+		var identifier = event.product();
 
 		if (!inventory.hasItemFor(identifier)) {
 
@@ -64,15 +64,15 @@ class InventoryListener {
 	@DomainEventHandler
 	void onOrderCompleted(OrderCompleted event) {
 
-		log.info("Received completed order {}. Triggering stock update for line items.", event.getOrderIdentifier());
+		log.info("Received completed order {}. Triggering stock update for line items.", event.orderIdentifier());
 
-		inventory.updateStockFor(orders.findOrder(event.getOrderIdentifier()));
+		inventory.updateStockFor(orders.findOrder(event.orderIdentifier()));
 	}
 
 	@DomainEventHandler
 	void onOutOfStock(OutOfStock event) {
 
-		var product = event.getProduct();
+		var product = event.product();
 		var id = product.getId();
 		var stock = inventory.getStockFor(id);
 

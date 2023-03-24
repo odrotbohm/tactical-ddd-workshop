@@ -21,8 +21,6 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import lombok.With;
 
 import java.util.ArrayList;
@@ -34,19 +32,17 @@ import org.jmolecules.ddd.types.Identifier;
 import org.jmolecules.event.types.DomainEvent;
 import org.springframework.data.domain.AbstractAggregateRoot;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
 @Table(name = "ORDERS")
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Order extends AbstractAggregateRoot<Order> implements AggregateRoot<Order, OrderIdentifier> {
 
-	private OrderIdentifier id;
-	private List<LineItem> lineItems;
-	private @With Status status;
+	private final OrderIdentifier id;
+	private final List<LineItem> lineItems;
+	private final @With Status status;
 
 	Order() {
 
@@ -71,23 +67,14 @@ public class Order extends AbstractAggregateRoot<Order> implements AggregateRoot
 
 		return withStatus(Status.COMPLETED) //
 				.andEventsFrom(this) //
-				.andEvent(OrderCompleted.of(id));
+				.andEvent(new OrderCompleted(id));
 	}
 
 	public enum Status {
 		SUBMITTED, COMPLETED;
 	}
 
-	@Value(staticConstructor = "of")
-	public static class OrderIdentifier implements Identifier {
-		UUID orderId;
-	}
+	public record OrderIdentifier(UUID orderId) implements Identifier {}
 
-	@Value
-	@RequiredArgsConstructor(staticName = "of",
-			access = AccessLevel.PRIVATE,
-			onConstructor = @__(@JsonCreator))
-	public static class OrderCompleted implements DomainEvent {
-		OrderIdentifier orderIdentifier;
-	}
+	public record OrderCompleted(OrderIdentifier orderIdentifier) implements DomainEvent {}
 }

@@ -19,34 +19,36 @@ import static org.assertj.core.api.Assertions.*;
 
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductIdentifier;
 import de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderCompleted;
+import de.odrotbohm.examples.ddd.moduliths.orders.Order.Status;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.modulith.test.ApplicationModuleTest;
-import org.springframework.modulith.test.PublishedEvents;
+import org.springframework.modulith.test.AssertablePublishedEvents;
+import org.springframework.modulith.test.Scenario;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Oliver Drotbohm
  */
-@ApplicationModuleTest
 @Transactional
+@ApplicationModuleTest
 @RequiredArgsConstructor
 class OrderManagementIntegrationTests {
 
 	private final OrderManagement orders;
 
 	@Test
-	void completingAnOrderUpdatesInventory(PublishedEvents events) {
+	void completingAnOrderUpdatesInventory(Scenario scenario, AssertablePublishedEvents events) throws Exception {
 
 		var order = orders.createOrder()
-				.add(ProductIdentifier.of(UUID.randomUUID()), 5);
+				.add(new ProductIdentifier(UUID.randomUUID()), 5);
 
-		orders.complete(order);
+		scenario.stimulate(() -> orders.complete(order))
+				.andWaitForStateChange(() -> orders.findOrder(order.getId()).getStatus(), Status.COMPLETED::equals);
 
-		assertThat(events.ofType(OrderCompleted.class)
-				.matchingMapped(OrderCompleted::getOrderIdentifier, order::equals));
+		assertThat(events.eventOfTypeWasPublished(OrderCompleted.class));
 	}
 }
