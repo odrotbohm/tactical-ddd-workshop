@@ -15,10 +15,6 @@
  */
 package de.odrotbohm.examples.ddd.integration;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.Value;
-
 import java.util.regex.Pattern;
 
 /**
@@ -27,13 +23,9 @@ import java.util.regex.Pattern;
  *
  * @author Oliver Drotbohm
  */
-@Value
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-class EmailAddress /* implements ValueObject */ {
+record EmailAddress(String value) /* implements ValueObject */ {
 
 	private static final Pattern REGEX = Pattern.compile("[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+");
-
-	String value;
 
 	static EmailAddress of(String source) {
 
