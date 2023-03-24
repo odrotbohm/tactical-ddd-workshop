@@ -19,6 +19,7 @@
 	<properties>
 		<archunit.version>1.0.1</archunit.version>
 		<bytebuddy.version>1.14.2</bytebuddy.version>
+		<hibernate.version>6.2.0.CR4</hibernate.version>
 		<java.version>17</java.version>
 		<jmolecules.version>2022.2.4</jmolecules.version>
 		<spring-modulith.version>0.5.0</spring-modulith.version>
