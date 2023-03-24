@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
 @Slf4j
 @Transactional

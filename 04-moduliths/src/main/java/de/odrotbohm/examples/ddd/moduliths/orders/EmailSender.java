@@ -23,7 +23,7 @@ import org.springframework.modulith.ApplicationModuleListener;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
 @Slf4j
 @Component

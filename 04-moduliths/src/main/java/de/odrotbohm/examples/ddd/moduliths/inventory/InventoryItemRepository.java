@@ -25,7 +25,7 @@ import org.jmolecules.ddd.types.Association;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
 interface InventoryItemRepository extends CrudRepository<InventoryItem, InventoryItemIdentifier> {
 

@@ -20,7 +20,7 @@ import de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderIdentifier;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
 interface OrderRepository extends CrudRepository<Order, OrderIdentifier> {
 

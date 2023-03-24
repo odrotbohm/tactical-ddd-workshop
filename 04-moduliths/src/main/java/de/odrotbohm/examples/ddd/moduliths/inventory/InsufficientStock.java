@@ -20,7 +20,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Value;
 
 /**
- * @author Oliver Gierke
+ * @author Oliver Drotbohm
  */
 @Value
 @SuppressWarnings("serial")
