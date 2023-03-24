@@ -23,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.jmolecules.event.annotation.DomainEventHandler;
+import org.springframework.modulith.ApplicationModuleListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +44,7 @@ class InventoryListener {
 	 *
 	 * @param event
 	 */
-	@DomainEventHandler
+	@ApplicationModuleListener
 	void onProductAdded(ProductAdded event) {
 
 		var identifier = event.product();
@@ -61,7 +62,7 @@ class InventoryListener {
 	 *
 	 * @param event
 	 */
-	@DomainEventHandler
+	@ApplicationModuleListener
 	void onOrderCompleted(OrderCompleted event) {
 
 		log.info("Received completed order {}. Triggering stock update for line items.", event.orderIdentifier());

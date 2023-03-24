@@ -19,9 +19,8 @@ import de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderCompleted;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.scheduling.annotation.Async;
+import org.springframework.modulith.ApplicationModuleListener;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.event.TransactionalEventListener;
 
 /**
  * @author Oliver Gierke
@@ -37,8 +36,7 @@ class EmailSender {
 	 *
 	 * @param event
 	 */
-	@Async
-	@TransactionalEventListener
+	@ApplicationModuleListener
 	void on(OrderCompleted event) {
 
 		log.info("Sending email for order {}.", event.orderIdentifier());
