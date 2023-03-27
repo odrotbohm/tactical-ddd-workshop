@@ -7,19 +7,19 @@ It consists of 4 modules that showcase different aspects of how to write archite
 
 Showcases…
 
-* … how using jMolecules DDD abstractions in a domain model allow to verify rules originating from the concepts expressed via ArchUnit.
+* … how using jMolecules DDD abstractions in a domain model allow to verify rules originating from the concepts expressed via https://github.com/xmolecules/jmolecules-integrations/tree/main/jmolecules-archunit[jMolecules ArchUnit integration].
 
 == 2. Out of the box port integration for jMolecules types
 
 Showcases…
 
-* … value types and identifiers working as their primitive values in JSON representations.
+* … value types and identifiers working as their primitive values in JSON representations using https://github.com/xmolecules/jmolecules-integrations/tree/main/jmolecules-jackson[jMolecules Jackson integration].
 
 == 3. Reducing boilerplate code for persistent models
 
 Showcases…
 
-* … the use of jMolecules' ByteBuddy plugin to default the JPA mappings to follow the aggregate structure expressed in the model.
+* … the use of https://github.com/xmolecules/jmolecules-integrations/tree/main/jmolecules-bytebuddy[jMolecules' ByteBuddy plugin] to default the JPA mappings to follow the aggregate structure expressed in the model.
 
 == 4. Building low-coupled modules using Moduliths
 
