@@ -21,7 +21,7 @@ Showcases…
 
 * … the use of https://github.com/xmolecules/jmolecules-integrations/tree/main/jmolecules-bytebuddy[jMolecules' ByteBuddy plugin] to default the JPA mappings to follow the aggregate structure expressed in the model.
 
-== 4. Building low-coupled modules using Moduliths
+== 4. Building low-coupled modules using https://github.com/spring-projects-experimental/spring-modulith[Spring Modulith]
 
 Showcases…
 
@@ -29,4 +29,4 @@ Showcases…
 * … strictly models cross-aggregate references as jMolecules ``Association``s.
 * … using domain events to implement interaction between modules and avoid bean references across module boundaries.
 * … implementing tests that verify business functionality around the published and consumed events.
-* … the use of Moduliths' `Documenter` to create documentation around the module structure, relevant components of each module and their interaction.
+* … the use of Spring Modulith's `Documenter` to create documentation around the module structure, relevant components of each module and their interaction.
