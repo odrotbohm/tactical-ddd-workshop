@@ -24,30 +24,30 @@ import lombok.Value;
 
 import java.util.regex.Pattern;
 
-import org.jmolecules.ddd.types.ValueObject;
-
 /**
  * @author Oliver Drotbohm
  */
+// TODO: 40 A - Replace with record
 @Value
-@Embeddable // remove
+@Embeddable // TODO: 30 A - Remove
 @RequiredArgsConstructor
-@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // remove
-class Address implements ValueObject {
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // TODO: 30 A - Remove
+class Address { // TODO: 10 A - implements ValueObject {
 
 	String street;
 	ZipCode zip;
 	String city;
 
 	@Value
-	@Embeddable // remove
+	@Embeddable // TODO: 30 A - Remove
 	@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-	@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // remove
-	static class ZipCode implements ValueObject {
+	@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // TODO: 30 A - Remove
+	static class ZipCode { // TODO: 10 A - implements ValueObject {
 
 		private static final Pattern REGEX = Pattern.compile("[0-9]{5}");
 
-		@Column(name = "zipCode") String value;
+		@Column(name = "zipCode") //
+		String value;
 
 		public static ZipCode of(String source) {
 

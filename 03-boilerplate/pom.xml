@@ -3,6 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<!-- Markers to group TODOs in IDE -->
+	<!-- TODO: 10 -->
+	<!-- TODO: 20 -->
+	<!-- TODO: 30 -->
+	<!-- TODO: 40 -->
+	<!-- TODO: 50 -->
+
 	<artifactId>tactical-ddd-workshop-03-boilerplate</artifactId>
 
 	<name>Tactical DDD Workshop - Boilerplate</name>
@@ -31,17 +38,37 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 
+		<!-- TODO: 20 X - Include additional libraries matching the tech stack
+
+		<dependency>
+			<groupId>org.jmolecules.integrations</groupId>
+			<artifactId>jmolecules-jpa</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jmolecules.integrations</groupId>
+			<artifactId>jmolecules-spring</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		-->
+
+		<!-- TODO: 20 X - Include jMolecules ByteBuddy transformer
+
 		<dependency>
 			<groupId>org.jmolecules.integrations</groupId>
 			<artifactId>jmolecules-bytebuddy-nodep</artifactId>
+			<scope>provided</scope>
 		</dependency>
+		-->
 
 	</dependencies>
 
 	<build>
 		<plugins>
 
-			<!--
+			<!-- TODO: 20 X - Activate ByteBuddy build plugin to apply transformations
 			<plugin>
 				<groupId>net.bytebuddy</groupId>
 				<artifactId>byte-buddy-maven-plugin</artifactId>

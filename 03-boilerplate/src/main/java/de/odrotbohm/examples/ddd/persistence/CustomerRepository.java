@@ -22,6 +22,7 @@ import org.springframework.data.repository.Repository;
 /**
  * @author Oliver Drotbohm
  */
+// TODO: 50 CR - Replace with org.jmolecules.ddd.types.Repository
 interface CustomerRepository extends Repository<Customer, CustomerId> {
 
 	Customer save(Customer customer);

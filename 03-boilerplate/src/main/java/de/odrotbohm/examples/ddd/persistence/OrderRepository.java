@@ -24,6 +24,7 @@ import org.springframework.data.util.Streamable;
 /**
  * @author Oliver Drotbohm
  */
+// TODO: 50 OR - Replace with org.jmolecules.ddd.types.Repository
 interface OrderRepository extends Repository<Order, OrderId> {
 
 	Order save(Order customer);

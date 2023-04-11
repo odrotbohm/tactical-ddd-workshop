@@ -1,0 +1,57 @@
+= Lab Instructions
+
+This build module contains a sample project to showcase how to use the jMolecules ByteBuddy integration to avoid boilerplate code to map a domain model to a database using JPA.
+To verify everything continues to work as expected during our refactoring we can run `PersistentModelTests` after each step.
+
+== Add Stereotype Interfaces
+
+In this step we add the jMolecules DDD stereotype interface to the codebase to assign individual model elements to Domain-Driven Design building blocks.
+While this primarily makes our code more expressive and allows verification shown in module 1, it also enables the boilerplate code generation in the following steps.
+
+. Search for all `TODO: 10` tags in the codebase and uncomment the additional type declarations.
+. Execute `PersistentModelTests` to verify everything still works as expected
+
+== Activate ByteBuddy Code Generation
+
+. Find all `TODO: 20` tags.
+. Uncomment additional dependencies and the build plugin `pom.xml`
+. Execute project build and see the jMolecules' log output skipping transformations as it still finds the explicit annotations on our model types.
+. Execute `PersistentModelTests` to verify everything still works as expected.
+
+== Remove Obsolete JPA Annotations and Artifacts
+
+. For each model type, find all `TODO: 30` tags
+** Remove the corresponding type and field JPA annotations:
+** Also, get rid of all Lombok annotations that created code to satisfy JPA requirements, such as no-argument constructors.
+** Remove the `Serializable` implementation from all `Identifier` implementations (including the declaration of the `serialVersionUID` field).
+** Finally, replace the `CustomerId customer` property in `Order` with `Association<Customer, CustomerId>` and replace the assignment with a call to `Association.forId(…)`.
+. Execute `PersistentModelTests` to verify everything still works as expected.
+
+== Replace Identifiers and Value Objects with Java Records
+
+Hibernate 6 supports custom instantiators for embeddable types and Hibernate 6.2 has extended that support to embeddable identifiers.
+For Java records, the jMolcules ByteBuddy plugin can generate such an `EmbeddableInstantiator` (see `RecordInstantiator` in `jmolecules-spring`).
+This allows us to get rid of the custom value type implementations and simplify the declaration of identifiers.
+
+. For all value objects, find the `TODO: 40` tags and replace the class declarations with record ones.
++
+[source, java]
+----
+// Before
+@Value
+class MyValue {
+  String someProperty;
+}
+
+// After
+record MyValue(String someProperty) {}
+----
+
+. Execute `PersistentModelTests` to verify everything still works as expected
+
+== Replace Spring Data Repository Interfaces with jMolecules ones
+
+. Find all `TODO: 50` tags and fix them as instructed.
+In particular, replace the references to Spring Data repository interfaces with ones from jMolecules.
+See how the compile log shows those interfaces to additionally extend the Spring Data interfaces.
+. Execute `PersistentModelTests` to verify everything still works as expected

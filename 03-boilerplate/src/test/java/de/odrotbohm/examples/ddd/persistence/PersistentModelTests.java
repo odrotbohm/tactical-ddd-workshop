@@ -22,18 +22,20 @@ import de.odrotbohm.examples.ddd.persistence.Order.LineItem;
 import lombok.RequiredArgsConstructor;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestConstructor;
+import org.springframework.test.context.TestConstructor.AutowireMode;
 
 /**
  * @author Oliver Drotbohm
  */
 @SpringBootTest
 @RequiredArgsConstructor
+@TestConstructor(autowireMode = AutowireMode.ALL)
 class PersistentModelTests {
 
-	@Autowired CustomerRepository customers;
-	@Autowired OrderRepository orders;
+	private final CustomerRepository customers;
+	private final OrderRepository orders;
 
 	@Test
 	void persistsCustomerAndOrder() {

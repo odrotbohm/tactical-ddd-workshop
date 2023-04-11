@@ -15,7 +15,6 @@
  */
 package de.odrotbohm.examples.ddd.persistence;
 
-import de.odrotbohm.examples.ddd.persistence.Customer.CustomerId;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -28,33 +27,31 @@ import lombok.RequiredArgsConstructor;
 import java.io.Serializable;
 import java.util.UUID;
 
-import org.jmolecules.ddd.types.AggregateRoot;
-import org.jmolecules.ddd.types.Identifier;
-
 /**
  * @author Oliver Drotbohm
  */
 @Getter
-@Entity // remove
-@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // remove
-class Customer implements AggregateRoot<Customer, CustomerId> {
+@Entity // TODO: 30 C - Remove
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // TODO: 30 C - Remove
+class Customer { // TODO: 10 C - implements AggregateRoot<Customer, CustomerId> {
 
-	private final @EmbeddedId CustomerId id;
+	private final @EmbeddedId CustomerId id; // TODO: 30 C - Remove annotation
 	private Address address;
 
 	Customer(Address address) {
 
-		this.id = CustomerId.of(UUID.randomUUID().toString());
+		this.id = new CustomerId(UUID.randomUUID().toString());
 		this.address = address;
 	}
 
-	@Embeddable // remove
+	// TODO: 40 C - Replace with record
+	@Embeddable // TODO: 30 C - Remove
 	@EqualsAndHashCode
-	@RequiredArgsConstructor(staticName = "of")
-	@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // remove
-	static class CustomerId implements Serializable, Identifier {
+	@RequiredArgsConstructor
+	@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // TODO: 30 C - Remove
+	static class CustomerId implements Serializable { // TODO: 10 C - , Identifier { // TODO: 30 C - Remove Serializable
 
-		private static final long serialVersionUID = 1733846413103581113L;
-		private final String customerId;
+		private static final long serialVersionUID = 1733846413103581113L; // TODO: 30 C - Remove
+		private final String customerId; // TODO: 40 C - Switch to UUID
 	}
 }

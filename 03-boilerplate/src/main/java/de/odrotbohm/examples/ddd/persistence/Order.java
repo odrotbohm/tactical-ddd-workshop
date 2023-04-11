@@ -16,8 +16,6 @@
 package de.odrotbohm.examples.ddd.persistence;
 
 import de.odrotbohm.examples.ddd.persistence.Customer.CustomerId;
-import de.odrotbohm.examples.ddd.persistence.Order.LineItem.LineItemId;
-import de.odrotbohm.examples.ddd.persistence.Order.OrderId;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
@@ -35,29 +33,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.jmolecules.ddd.types.AggregateRoot;
-import org.jmolecules.ddd.types.Identifier;
-
 /**
  * @author Oliver Drotbohm
  */
 @Getter
-@Entity // remove
+@Entity // TODO: 30 O - Remove
 @Table(name = "SAMPLE_ORDER")
-@EqualsAndHashCode(of = "id") // remove
-@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // remove
-class Order implements AggregateRoot<Order, OrderId> {
+@EqualsAndHashCode(of = "id") // TODO: 30 O - Remove
+@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // TODO: 30 O - Remove
+class Order { // TODO: 10 O - implements AggregateRoot<Order, OrderId> {
 
-	private final @EmbeddedId /* remove */ OrderId id;
-	private final CustomerId customerId;
+	private final @EmbeddedId OrderId id; // TODO: 30 O - Remove annotation
+	private final CustomerId customer; // TODO: 30 O - Replace with Association<Customer, CustomerId>
 
-	@OneToMany(cascade = CascadeType.ALL) //
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // TODO: 30 O - Remove annotation
 	private final List<LineItem> lineItems;
 
 	Order(CustomerId customerId) {
 
-		this.id = OrderId.of(UUID.randomUUID().toString());
-		this.customerId = customerId;
+		this.id = new OrderId(UUID.randomUUID().toString());
+		this.customer = customerId;
 		this.lineItems = new ArrayList<>();
 	}
 
@@ -68,40 +63,42 @@ class Order implements AggregateRoot<Order, OrderId> {
 		return this;
 	}
 
-	@Embeddable // remove
+	// TODO: 40 O - Replace with record
+	@Embeddable // TODO: 30 O - Remove
 	@EqualsAndHashCode
-	@RequiredArgsConstructor(staticName = "of")
-	@NoArgsConstructor(force = true) // remove
-	static class OrderId implements Serializable, Identifier {
+	@RequiredArgsConstructor
+	@NoArgsConstructor(force = true) // TODO: 30 O - Remove
+	static class OrderId implements Serializable { // TODO: 10 O - , Identifier { // TODO: 30 O - Remove Serializable
 
-		private static final long serialVersionUID = 1009997590119941755L;
-		private final String orderId;
+		private static final long serialVersionUID = 1009997590119941755L; // TODO: 30 O - Remove
+		private final String orderId; // TODO: 40 O - Switch to UUID
 	}
 
-	@Entity // remove
+	@Entity // TODO: 30 O - Remove
 	@Getter
-	@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // remove
-	static class LineItem implements org.jmolecules.ddd.types.Entity<Order, LineItemId> {
+	@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // TODO: 30 O - Remove
+	static class LineItem { // TODO: 10 O - implements org.jmolecules.ddd.types.Entity<Order, LineItemId> {
 
-		private @EmbeddedId /* remove */ LineItemId id;
+		private @EmbeddedId LineItemId id; // TODO: 30 O - Remove annotation
 		private String description;
 		private long amount;
 
 		LineItem(String description, long amount) {
 
-			this.id = LineItemId.of(UUID.randomUUID().toString());
+			this.id = new LineItemId(UUID.randomUUID().toString());
 			this.description = description;
 			this.amount = amount;
 		}
 
-		@Embeddable // remove
+		// TODO: 40 O - Replace with record
+		@Embeddable // TODO: 30 O - Remove
 		@EqualsAndHashCode
-		@RequiredArgsConstructor(staticName = "of")
-		@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // remove
-		static class LineItemId implements Serializable, Identifier {
+		@RequiredArgsConstructor
+		@NoArgsConstructor(force = true, access = AccessLevel.PRIVATE) // TODO: 30 O - Remove
+		static class LineItemId implements Serializable { // TODO: 10 O - , Identifier { // TODO: 30 O - Remove Serializable
 
-			private static final long serialVersionUID = 1009997590119941755L;
-			private final String lineItemId;
+			private static final long serialVersionUID = 1009997590119941755L; // TODO: 30 O - Remove
+			private final String lineItemId; // TODO: 40 O - Switch to UUID
 		}
 	}
 }
