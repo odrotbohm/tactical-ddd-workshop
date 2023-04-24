@@ -17,12 +17,10 @@ package de.odrotbohm.examples.ddd.moduliths;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * @author Oliver Drotbohm
  */
-@EnableAsync(proxyTargetClass = false)
 @SpringBootApplication
 public class ModulithsApplication {
 
