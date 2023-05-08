@@ -40,7 +40,7 @@ public class LineItem implements Entity<Order, LineItemIdentifier> {
 
 	LineItem(ProductIdentifier productIdentifier, long amount) {
 
-		this.id = new LineItemIdentifier(UUID.randomUUID().toString());
+		this.id = new LineItemIdentifier(UUID.randomUUID());
 		this.product = Association.forId(productIdentifier);
 		this.amount = amount;
 	}
@@ -56,5 +56,5 @@ public class LineItem implements Entity<Order, LineItemIdentifier> {
 		return this;
 	}
 
-	public record LineItemIdentifier(String lineItemId) implements Identifier {}
+	public record LineItemIdentifier(UUID lineItemId) implements Identifier {}
 }
