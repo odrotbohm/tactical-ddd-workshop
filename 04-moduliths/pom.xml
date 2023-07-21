@@ -17,7 +17,7 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.springframework.experimental</groupId>
+				<groupId>org.springframework.modulith</groupId>
 				<artifactId>spring-modulith-bom</artifactId>
 				<version>${spring-modulith.version}</version>
 				<type>pom</type>
@@ -31,12 +31,12 @@
 		<!-- Spring Modulith -->
 
 		<dependency>
-			<groupId>org.springframework.experimental</groupId>
+			<groupId>org.springframework.modulith</groupId>
 			<artifactId>spring-modulith-starter-jpa</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.experimental</groupId>
+			<groupId>org.springframework.modulith</groupId>
 			<artifactId>spring-modulith-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
