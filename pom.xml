@@ -18,7 +18,7 @@
 
 	<properties>
 		<archunit.version>1.0.1</archunit.version>
-		<bytebuddy.version>1.14.4</bytebuddy.version>
+		<bytebuddy.version>1.14.6</bytebuddy.version>
 		<java.version>17</java.version>
 		<jmolecules.version>2022.3.0</jmolecules.version>
 		<spring-modulith.version>1.0.0-SNAPSHOT</spring-modulith.version>
