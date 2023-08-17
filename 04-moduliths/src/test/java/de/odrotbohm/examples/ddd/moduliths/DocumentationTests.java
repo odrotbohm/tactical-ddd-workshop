@@ -37,18 +37,10 @@ class DocumentationTests {
 		var canvasOptions = CanvasOptions.defaults()
 				.withApiBase("http://localhost:8080/javadoc");
 
-		var options = DiagramOptions.defaults()
+		var diagramOptions = DiagramOptions.defaults()
 				.withStyle(DiagramStyle.UML);
 
 		new Documenter(modules)
-
-				// Overview component diagram
-				.writeModulesAsPlantUml(options)
-
-				// Component diagram per module
-				.writeIndividualModulesAsPlantUml(options)
-
-				// Module overview
-				.writeModuleCanvases(canvasOptions);
+				.writeDocumentation(diagramOptions, canvasOptions);
 	}
 }
