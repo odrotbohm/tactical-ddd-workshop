@@ -17,13 +17,7 @@ package de.odrotbohm.examples.ddd.verification;
 
 import static org.junit.jupiter.api.Assumptions.*;
 
-import de.odrotbohm.examples.ddd.verification.Customer.CustomerId;
-
 import org.jmolecules.archunit.JMoleculesDddRules;
-import org.jmolecules.ddd.annotation.AggregateRoot;
-import org.jmolecules.ddd.annotation.Identity;
-import org.jmolecules.ddd.types.Association;
-import org.jmolecules.ddd.types.Identifier;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ImportOption;
