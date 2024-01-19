@@ -19,7 +19,7 @@ import de.odrotbohm.examples.ddd.moduliths.orders.Order.OrderCompleted;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.modulith.ApplicationModuleListener;
+import org.springframework.modulith.events.ApplicationModuleListener;
 import org.springframework.stereotype.Component;
 
 /**
