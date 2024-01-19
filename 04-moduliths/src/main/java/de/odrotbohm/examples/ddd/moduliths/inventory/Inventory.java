@@ -15,7 +15,6 @@
  */
 package de.odrotbohm.examples.ddd.moduliths.inventory;
 
-import de.odrotbohm.examples.ddd.moduliths.catalog.Product;
 import de.odrotbohm.examples.ddd.moduliths.catalog.Product.ProductIdentifier;
 import de.odrotbohm.examples.ddd.moduliths.orders.Order;
 import lombok.RequiredArgsConstructor;

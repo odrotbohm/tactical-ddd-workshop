@@ -15,8 +15,6 @@
  */
 package de.odrotbohm.examples.ddd.verification;
 
-import de.odrotbohm.examples.ddd.verification.Address.ZipCode;
-
 import java.util.regex.Pattern;
 
 /**
