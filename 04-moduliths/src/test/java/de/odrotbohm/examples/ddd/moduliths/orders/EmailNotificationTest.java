@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.modulith.events.core.EventPublicationRegistry;
 import org.springframework.modulith.test.ApplicationModuleTest;
 import org.springframework.modulith.test.Scenario;
+import org.springframework.test.annotation.DirtiesContext;
 
 /**
  * @author Oliver Drotbohm
@@ -62,6 +63,7 @@ class EmailNotificationTest {
 	}
 
 	@Test
+	@DirtiesContext
 	void systemCrashDuringTransactionalListenerExecutionKeepsPublicationRegistration(Scenario scenario) throws Exception {
 
 		emails.setFail(true);
