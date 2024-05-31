@@ -28,6 +28,11 @@
 
 		<dependency>
 			<groupId>org.jmolecules.integrations</groupId>
+			<artifactId>jmolecules-apt</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jmolecules.integrations</groupId>
 			<artifactId>jmolecules-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
