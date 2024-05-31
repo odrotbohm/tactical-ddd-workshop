@@ -15,9 +15,7 @@
  */
 package de.odrotbohm.examples.ddd.verification;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
@@ -31,12 +29,8 @@ class Customer /* implements AggregateRoot<Customer, CustomerId> */ {
 	private Address address;
 
 	Customer() {
-		this.id = CustomerId.of(UUID.randomUUID());
+		this.id = new CustomerId(UUID.randomUUID());
 	}
 
-	@EqualsAndHashCode
-	@RequiredArgsConstructor(staticName = "of")
-	static class CustomerId /* implements Identifier */ {
-		private final UUID value;
-	}
+	static record CustomerId(UUID value) /* implements Identifier */ {}
 }

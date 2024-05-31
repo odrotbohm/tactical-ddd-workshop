@@ -15,11 +15,11 @@
  */
 package de.odrotbohm.examples.ddd.verification;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
+
+import org.jmolecules.ddd.types.Identifier;
 
 /**
  * @author Oliver Drotbohm
@@ -33,13 +33,9 @@ class Order /* implements AggregateRoot<Order, OrderId> */ {
 
 	Order(Customer customer) {
 
-		this.id = OrderId.of(UUID.randomUUID());
+		this.id = new OrderId(UUID.randomUUID());
 		this.customer = customer;
 	}
 
-	@EqualsAndHashCode
-	@RequiredArgsConstructor(staticName = "of")
-	static class OrderId /* implements Identifier */ {
-		private final UUID value;
-	}
+	static record OrderId(UUID value) implements Identifier {}
 }
