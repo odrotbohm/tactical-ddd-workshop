@@ -28,7 +28,7 @@
 		<module>01-verification</module>
 		<module>02-integration</module>
 		<module>03-boilerplate</module>
-		<module>04-moduliths</module>
+		<module>04-modulith</module>
 	</modules>
 
 	<dependencyManagement>
