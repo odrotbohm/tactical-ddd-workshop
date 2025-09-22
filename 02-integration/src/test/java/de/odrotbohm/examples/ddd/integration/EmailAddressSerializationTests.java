@@ -18,17 +18,17 @@ package de.odrotbohm.examples.ddd.integration;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.*;
 
+import tools.jackson.databind.json.JsonMapper;
+
 import org.jmolecules.ddd.types.ValueObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 @SpringBootTest
 class EmailAddressSerializationTests {
 
-	@Autowired ObjectMapper mapper;
+	@Autowired JsonMapper mapper;
 
 	@Test
 	void serializesEmailAddressAsNestedValue() throws Exception {
