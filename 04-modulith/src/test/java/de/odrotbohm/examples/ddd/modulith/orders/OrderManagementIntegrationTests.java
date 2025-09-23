@@ -43,6 +43,7 @@ class OrderManagementIntegrationTests {
 		var order = orders.createOrder()
 				.add(new ProductIdentifier(UUID.randomUUID()), 5);
 
+		// Wait for state change and expect event to be published
 		scenario.stimulate(() -> orders.complete(order))
 				.andWaitForStateChange(() -> orders.findOrder(order.getId()).getStatus(), Status.COMPLETED::equals)
 				.andExpect(OrderCompleted.class)

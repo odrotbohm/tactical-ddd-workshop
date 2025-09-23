@@ -19,6 +19,9 @@ import de.odrotbohm.examples.ddd.modulith.orders.Order.OrderCompleted;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.CompletableFuture;
+
+import org.jmolecules.event.types.DomainEvent;
 import org.springframework.modulith.events.ApplicationModuleListener;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +40,7 @@ class EmailSender {
 	 * @param event
 	 */
 	@ApplicationModuleListener
-	void on(OrderCompleted event) {
+	CompletableFuture<EmailSent> on(OrderCompleted event) {
 
 		log.info("Sending email for order {}.", event.orderIdentifier());
 
@@ -51,5 +54,9 @@ class EmailSender {
 		}
 
 		log.info("Successfully sent email for order {}.", event.orderIdentifier());
+
+		return CompletableFuture.completedFuture(new EmailSent());
 	}
+
+	record EmailSent() implements DomainEvent {}
 }

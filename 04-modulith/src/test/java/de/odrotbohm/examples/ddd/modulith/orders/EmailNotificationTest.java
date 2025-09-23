@@ -18,6 +18,7 @@ package de.odrotbohm.examples.ddd.modulith.orders;
 import static org.assertj.core.api.Assertions.*;
 
 import de.odrotbohm.examples.ddd.modulith.catalog.Product.ProductIdentifier;
+import de.odrotbohm.examples.ddd.modulith.orders.EmailSender.EmailSent;
 import de.odrotbohm.examples.ddd.modulith.orders.Order.OrderCompleted;
 import lombok.Value;
 
@@ -54,9 +55,9 @@ class EmailNotificationTest {
 		var order = orders.createOrder()
 				.add(identifier, 5);
 
+		// We wait for the result of the listener
 		scenario.stimulate(() -> orders.complete(order))
-				.customize(it -> it.pollDelay(1200, TimeUnit.MILLISECONDS))
-				.andWaitForEventOfType(OrderCompleted.class)
+				.andWaitForEventOfType(EmailSent.class)
 				.toArriveAndVerify(__ -> {
 					assertThat(registry.findIncompletePublications()).isEmpty();
 				});
@@ -71,8 +72,9 @@ class EmailNotificationTest {
 		var order = orders.createOrder()
 				.add(new ProductIdentifier(UUID.randomUUID()), 5);
 
+		// We wait for the outcome of the business operation.
 		scenario.stimulate(() -> orders.complete(order))
-				.customize(it -> it.pollDelay(1200, TimeUnit.MILLISECONDS))
+				.customize(it -> it.pollDelay(1000, TimeUnit.MILLISECONDS))
 				.andWaitForEventOfType(OrderCompleted.class)
 				.toArriveAndVerify(__ -> {
 					assertThat(registry.findIncompletePublications().size()).isEqualTo(1);
