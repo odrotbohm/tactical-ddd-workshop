@@ -37,7 +37,9 @@ class EmailAddressSerializationTests {
 
 		assumeFalse(TestUtils.isValueObject(email.getClass()));
 
-		assertThat(mapper.writeValueAsString(EmailAddress.of("foo@bar.com")))
+		// System.out.println(mapper.writeValueAsString(email));
+
+		assertThat(mapper.writeValueAsString(email))
 				.isEqualTo("{\"value\":\"foo@bar.com\"}");
 	}
 
@@ -47,6 +49,8 @@ class EmailAddressSerializationTests {
 		var email = EmailAddress.of("foo@bar.com");
 
 		assumeTrue(ValueObject.class.isInstance(email));
+
+		// System.out.println(mapper.writeValueAsString(email));
 
 		assertThat(mapper.writeValueAsString(email)).isEqualTo("\"foo@bar.com\"");
 	}
