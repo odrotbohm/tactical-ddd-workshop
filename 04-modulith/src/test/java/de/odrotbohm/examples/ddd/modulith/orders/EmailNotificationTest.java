@@ -58,7 +58,7 @@ class EmailNotificationTest {
 		// We wait for the result of the listener
 		scenario.stimulate(() -> orders.complete(order))
 				.andWaitForEventOfType(EmailSent.class)
-				.toArriveAndVerify(__ -> {
+				.toArriveAndVerify(_ -> {
 					assertThat(registry.findIncompletePublications()).isEmpty();
 				});
 	}
@@ -76,7 +76,7 @@ class EmailNotificationTest {
 		scenario.stimulate(() -> orders.complete(order))
 				.customize(it -> it.pollDelay(1000, TimeUnit.MILLISECONDS))
 				.andWaitForEventOfType(OrderCompleted.class)
-				.toArriveAndVerify(__ -> {
+				.toArriveAndVerify(_ -> {
 					assertThat(registry.findIncompletePublications().size()).isEqualTo(1);
 				});
 	}
