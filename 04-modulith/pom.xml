@@ -108,39 +108,6 @@
 				</configuration>
 			</plugin>
 
-			<!--
-
-				Enable custom Javadoc Doclet to extract Javadoc into a JSON File
-				so that it can be included in generated documentation.
-
-
-			<plugin>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok-maven-plugin</artifactId>
-				<version>1.18.20.0</version>
-				<dependencies>
-					<dependency>
-						<groupId>org.projectlombok</groupId>
-						<artifactId>lombok</artifactId>
-						<version>${lombok.version}</version>
-					</dependency>
-				</dependencies>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							 <goal>delombok</goal>
-						</goals>
-						<configuration>
-							<addOutputDirectory>false</addOutputDirectory>
-							<sourceDirectory>src/main/java</sourceDirectory>
-							<outputDirectory>${project.build.directory}/delombok	</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			-->
-
 		</plugins>
 	</build>
 
