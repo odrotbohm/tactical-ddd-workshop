@@ -51,6 +51,7 @@ class EmailNotificationTest {
 	@Test
 	void completingAnOrderUpdatesInventory(Scenario scenario) throws Exception {
 
+		var before = registry.findIncompletePublications().size();
 		var identifier = new ProductIdentifier(UUID.randomUUID());
 		var order = orders.createOrder()
 				.add(identifier, 5);
@@ -59,7 +60,7 @@ class EmailNotificationTest {
 		scenario.stimulate(() -> orders.complete(order))
 				.andWaitForEventOfType(EmailSent.class)
 				.toArriveAndVerify(_ -> {
-					assertThat(registry.findIncompletePublications()).isEmpty();
+					assertThat(registry.findIncompletePublications()).hasSize(before);
 				});
 	}
 
@@ -72,12 +73,14 @@ class EmailNotificationTest {
 		var order = orders.createOrder()
 				.add(new ProductIdentifier(UUID.randomUUID()), 5);
 
+		var before = registry.findIncompletePublications().size();
+
 		// We wait for the outcome of the business operation.
 		scenario.stimulate(() -> orders.complete(order))
 				.customize(it -> it.pollDelay(1000, TimeUnit.MILLISECONDS))
 				.andWaitForEventOfType(OrderCompleted.class)
 				.toArriveAndVerify(_ -> {
-					assertThat(registry.findIncompletePublications().size()).isEqualTo(1);
+					assertThat(registry.findIncompletePublications().size()).isEqualTo(before + 1);
 				});
 	}
 }
