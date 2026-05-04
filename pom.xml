@@ -18,7 +18,7 @@
 
 	<properties>
 		<archunit.version>1.4.2</archunit.version>
-		<bytebuddy.version>1.18.4</bytebuddy.version>
+		<bytebuddy.version>1.18.8</bytebuddy.version>
 		<java.version>25</java.version>
 		<jmolecules.version>2025.0.2</jmolecules.version>
 		<!-- Enable full annotation processing on Java 23+ -->
