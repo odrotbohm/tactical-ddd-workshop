@@ -23,7 +23,7 @@
 		<jmolecules.version>2025.0.2</jmolecules.version>
 		<!-- Enable full annotation processing on Java 23+ -->
 		<maven.compiler.proc>full</maven.compiler.proc>
-		<spring-modulith.version>2.1.0-M1</spring-modulith.version>
+		<spring-modulith.version>2.1.0-RC1</spring-modulith.version>
 	</properties>
 
 	<modules>
